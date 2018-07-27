@@ -4,6 +4,7 @@
     <string name="login">登录</string>
     <string name="wechat_login">微信登录</string>
     <string name="input_phone">输入手机号</string>
+    <string name="input_your_phone">输入您的手机号</string>
     <string name="input_password">输入密码</string>
     <string name="forget_password">忘记密码？</string>
     <string name="condition_term">注册即代表阅读并同意使用条款和隐私政策</string>
@@ -17,4 +18,7 @@
     <string name="set_profile">设置个人信息</string>
     <string name="set_nickname">设置您的昵称</string>
     <string name="set_email">输入您的邮箱</string>
+    <string name="set_password">设置登录密码</string>
+    <string name="set_your_password">设置您的登录密码</string>
+    <string name="confirm_your_password">再次确认您的登录密码</string>
 </resources>

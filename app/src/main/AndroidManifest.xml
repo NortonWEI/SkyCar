@@ -38,6 +38,11 @@
             android:label=""
             android:parentActivityName=".AuthCodeActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
+        <activity
+            android:name=".PasswordSetActivity"
+            android:label=""
+            android:parentActivityName=".ProfileSetActivity"
+            android:theme="@style/AppTheme.WhiteActionBar" />
     </application>
 
 </manifest>

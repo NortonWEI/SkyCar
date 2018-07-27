@@ -33,30 +33,30 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_textView" />
 
     <EditText
-        android:id="@+id/set_email_editText"
+        android:id="@+id/sign_up_phone_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="+86"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_nickname_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/country_region_editText" />
 
     <EditText
-        android:id="@+id/input_nickname_editText"
+        android:id="@+id/country_region_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="48dp"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/country_region"
         android:inputType="none"
-        android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/condition_term_textView" />
@@ -74,7 +74,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/set_email_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_phone_editText" />
 
 </android.support.constraint.ConstraintLayout>

@@ -94,27 +94,31 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setUpEditText() {
-        EditText countryRegionEditText = (EditText) findViewById(R.id.input_nickname_editText);
-        EditText phoneNumberEditText = (EditText) findViewById(R.id.set_email_editText);
+        EditText countryRegionEditText = (EditText) findViewById(R.id.country_region_editText);
+        EditText phoneNumberEditText = (EditText) findViewById(R.id.sign_up_phone_editText);
 
-        countryRegionEditText.setText(getString(R.string.country_region) + "  ");
+//        countryRegionEditText.setText(getString(R.string.country_region) + "  ");
         countryRegionEditText.setCursorVisible(false);
-        phoneNumberEditText.setText("           +86  ");
+//        phoneNumberEditText.setText("           +86  ");
 
         countryRegionEditText.setOnClickListener(view -> {
 
         });
 
         phoneNumberEditText.setOnClickListener(view -> {
-            phoneNumberEditText.setSelection(16);
+            if (countryRegionEditText.getText().toString().isEmpty()) {
+                phoneNumberEditText.setShowSoftInputOnFocus(false);
+            } else {
+                phoneNumberEditText.setSelection(5);
+            }
         });
 
         phoneNumberEditText.setOnKeyListener((view, keyCode, keyEvent) -> {
 
             if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyEvent.getKeyCode() == KeyEvent.KEYCODE_DEL) {
-                if (phoneNumberEditText.getText().length() <= 16) {
-                    phoneNumberEditText.setText("           +86   ");
-                    phoneNumberEditText.setSelection(17);
+                if (phoneNumberEditText.getText().length() <= 5) {
+                    phoneNumberEditText.setText("+86   ");
+                    phoneNumberEditText.setSelection(6);
                 }
             }
             return false;

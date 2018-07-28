@@ -41,7 +41,8 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/input_your_phone"
-        android:inputType="number"
+        android:inputType="phone"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/country_region_editText" />
@@ -56,7 +57,6 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="none"
-        android:text="澳大利亚"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/condition_term_textView" />
@@ -87,7 +87,6 @@
         android:ems="4"
         android:focusable="false"
         android:inputType="textPersonName"
-        android:text="+61  "
         android:textAlignment="viewEnd"
         android:textColor="@android:color/darker_gray"
         android:textIsSelectable="false"
@@ -109,5 +108,17 @@
         android:textColor="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/country_region_editText" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/country_region_editText"
+        app:layout_constraintEnd_toEndOf="@+id/country_region_editText"
+        app:layout_constraintTop_toTopOf="@+id/country_region_editText"
+        app:srcCompat="@drawable/arrow_right" />
 
 </android.support.constraint.ConstraintLayout>

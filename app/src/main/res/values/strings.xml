@@ -21,4 +21,8 @@
     <string name="set_password">设置登录密码</string>
     <string name="set_your_password">设置您的登录密码</string>
     <string name="confirm_your_password">再次确认您的登录密码</string>
+    <string name="skycar">车来了</string>
+    <string name="scheduled_bus">班车</string>
+    <string name="journey">行程</string>
+    <string name="my">我的</string>
 </resources>

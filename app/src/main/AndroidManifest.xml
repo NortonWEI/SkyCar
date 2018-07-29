@@ -43,6 +43,10 @@
             android:label=""
             android:parentActivityName=".ProfileSetActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="Skycar-车来了"
+            android:theme="@style/AppTheme.RedActionBar"/>
     </application>
 
 </manifest>

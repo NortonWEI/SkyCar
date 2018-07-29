@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class PasswordSetActivity extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class PasswordSetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_password_set);
 
         setUpActionBar();
+        setUpButton();
     }
 
     @Override
@@ -36,6 +38,16 @@ public class PasswordSetActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setUpButton() {
+        Button signUpButton = (Button) findViewById(R.id.sign_up_to_home_button);
+
+        signUpButton.setOnClickListener(view -> {
+            Intent intent = HomeActivity.makeIntent(PasswordSetActivity.this);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
     }
 
     public static Intent makeIntent(Context context) {

@@ -4,12 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -20,8 +16,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         setUpActionBar();
-        Button button = findViewById(R.id.wechat_login_button);
+        setUpButton();
     }
 
     @Override
@@ -53,6 +50,21 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setUpButton() {
+        Button wechatLoginButton = findViewById(R.id.wechat_login_button);
+        Button loginButton = findViewById(R.id.login_to_home_button);
+
+        wechatLoginButton.setOnClickListener(view -> {
+
+        });
+
+        loginButton.setOnClickListener(view -> {
+            Intent intent = HomeActivity.makeIntent(LoginActivity.this);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+            startActivity(intent);
+        });
     }
 
     public static Intent makeIntent(Context context) {

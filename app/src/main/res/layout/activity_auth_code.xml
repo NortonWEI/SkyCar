@@ -57,7 +57,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/drawable_next_step_button"
         android:text="@string/next_step"
-        android:textColor="#F1604F"
+        android:textColor="@color/themeRed"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:text="@string/resend"
-        android:textColor="#F1604F"
+        android:textColor="@color/themeRed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname_editText" />
 

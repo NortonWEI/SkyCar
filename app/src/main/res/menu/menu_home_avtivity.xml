@@ -3,15 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_skycar"
         android:icon="@drawable/home_unchecked"
         android:title="@string/skycar" />
     <item
+        android:id="@+id/nav_bus"
         android:icon="@drawable/bus_unchecked"
         android:title="@string/scheduled_bus" />
     <item
+        android:id="@+id/nav_trip"
         android:icon="@drawable/trip_unchecked"
-        android:title="@string/journey" />
+        android:title="@string/trip" />
     <item
+        android:id="@+id/nav_my"
         android:icon="@drawable/my_unchecked"
         android:title="@string/my" />
 </menu>

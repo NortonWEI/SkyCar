@@ -25,6 +25,15 @@
     <string name="scheduled_bus">班车</string>
     <string name="trip">行程</string>
     <string name="my">我的</string>
+    <string name="airport_pick_up">机场接送</string>
+    <string name="reserve_car">预约用车</string>
+    <string name="companion_bus">结伴班车</string>
+    <string name="chartered_travel">包车旅游</string>
+    <string name="inquire_flight">查询航班</string>
+    <string name="translate_licence">驾照翻译</string>
+    <string name="inquire_flight_sub">查询航班信息</string>
+    <string name="translate_licence_sub">驾照全球通行</string>
+    <string name="user_real_time_comment">用户实时评价</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

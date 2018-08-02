@@ -166,7 +166,7 @@
                 android:layout_marginTop="8dp">
 
                 <LinearLayout
-                    android:id="@+id/test_linear"
+                    android:id="@+id/user_comment_linear"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">

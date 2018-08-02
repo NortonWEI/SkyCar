@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpCommentView(View fragmentView) {
-        LinearLayout linearLayout = (LinearLayout) fragmentView.findViewById(R.id.test_linear);
+        LinearLayout linearLayout = (LinearLayout) fragmentView.findViewById(R.id.user_comment_linear);
 
         for (int i=0; i<10; i++) {
             LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

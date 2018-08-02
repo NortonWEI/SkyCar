@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linearLayout"
-            app:srcCompat="@drawable/bus_unchecked" />
+            app:srcCompat="@drawable/my_unchecked" />
 
         <LinearLayout
             android:id="@+id/linearLayout"

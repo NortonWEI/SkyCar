@@ -34,6 +34,8 @@
     <string name="inquire_flight_sub">查询航班信息</string>
     <string name="translate_licence_sub">驾照全球通行</string>
     <string name="user_real_time_comment">用户实时评价</string>
+    <string name="my_trip">我的行程</string>
+    <string name="personal_center">个人中心</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

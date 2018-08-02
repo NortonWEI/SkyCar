@@ -3,6 +3,8 @@ package com.example.nortonwei.skycar;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +20,14 @@ public class BusFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bus, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_bus, container, false);
+        HomeActivity.setUpActionBar((AppCompatActivity)getActivity(), getString(R.string.scheduled_bus));
+
+        return fragmentView;
     }
 
 }

@@ -5,10 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -18,12 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import com.example.nortonwei.skycar.Adapter.UserCommentAdapter;
-import com.example.nortonwei.skycar.Model.UserComment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -39,19 +30,12 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        HomeActivity.setUpActionBar((AppCompatActivity)getActivity(), getString(R.string.skycar));
         setUpButton(fragmentView);
-//        setUpRecyclerView(fragmentView);
-        LinearLayout linearLayout = (LinearLayout) fragmentView.findViewById(R.id.test_linear);
-
-        for (int i=0; i<10; i++) {
-            LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = vi.inflate(R.layout.user_comment_list_layout, null);
-
-            linearLayout.addView(v);
-        }
+        setUpCommentView(fragmentView);
 
         return fragmentView;
     }
@@ -70,6 +54,17 @@ public class HomeFragment extends Fragment {
         translateLicenceButtonText.setSpan(new ForegroundColorSpan(Color.GRAY), 5, translateLicenceButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         translateLicenceButtonText.setSpan(new RelativeSizeSpan(0.8f), 5, translateLicenceButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         translateLicenceButton.setText(translateLicenceButtonText);
+    }
+
+    private void setUpCommentView(View fragmentView) {
+        LinearLayout linearLayout = (LinearLayout) fragmentView.findViewById(R.id.test_linear);
+
+        for (int i=0; i<10; i++) {
+            LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View v = vi.inflate(R.layout.user_comment_list_layout, null);
+
+            linearLayout.addView(v);
+        }
     }
 
 //    private void setUpRecyclerView(View fragmentView) {

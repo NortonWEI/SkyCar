@@ -9,8 +9,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -19,13 +22,25 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        setUpActionBar();
+        getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.main_action_bar_layout);
         setUpBottomNav();
     }
 
-    private void setUpActionBar() {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.main_action_bar_layout);
+    static void setUpActionBar(AppCompatActivity activity, String title) {
+        View view = activity.getLayoutInflater().inflate(R.layout.main_action_bar_layout, null);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+                Gravity.CENTER);
+
+        TextView textView = (TextView) view.findViewById(R.id.main_title);
+        textView.setText(title);
+
+        activity.getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        activity.getSupportActionBar().setCustomView(view, params);
+        activity.getSupportActionBar().setDisplayShowCustomEnabled(true);
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void setUpBottomNav() {

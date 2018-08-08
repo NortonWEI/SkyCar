@@ -2,6 +2,7 @@ package com.example.nortonwei.skycar;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,19 +42,26 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpButton(View fragmentView) {
-        Button inquireFlightButton = fragmentView.findViewById(R.id.inquire_flight_button);
+        Button inquireFlightButton = (Button) fragmentView.findViewById(R.id.inquire_flight_button);
         SpannableString inquireFlightButtonText = new SpannableString(getString(R.string.inquire_flight) + "\n" + getString(R.string.inquire_flight_sub));
         inquireFlightButtonText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         inquireFlightButtonText.setSpan(new ForegroundColorSpan(Color.GRAY), 5, inquireFlightButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         inquireFlightButtonText.setSpan(new RelativeSizeSpan(0.8f), 5, inquireFlightButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         inquireFlightButton.setText(inquireFlightButtonText);
 
-        Button translateLicenceButton = fragmentView.findViewById(R.id.translate_licence_button);
+        Button translateLicenceButton = (Button) fragmentView.findViewById(R.id.translate_licence_button);
         SpannableString translateLicenceButtonText = new SpannableString(getString(R.string.translate_licence) + "\n" + getString(R.string.translate_licence_sub));
         translateLicenceButtonText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         translateLicenceButtonText.setSpan(new ForegroundColorSpan(Color.GRAY), 5, translateLicenceButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         translateLicenceButtonText.setSpan(new RelativeSizeSpan(0.8f), 5, translateLicenceButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         translateLicenceButton.setText(translateLicenceButtonText);
+
+        Button airportPickupButton = (Button) fragmentView.findViewById(R.id.ariport_pick_up_button);
+        airportPickupButton.setOnClickListener(view -> {
+            Intent intent = AirportPickupActivity.makeIntent(getContext());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        });
     }
 
     private void setUpCommentView(View fragmentView) {

@@ -49,6 +49,9 @@
     <string name="q_a">常见问题</string>
     <string name="about_us">关于我们</string>
     <string name="contact_us">联系我们</string>
+    <string name="pickup">接机</string>
+    <string name="dropoff">送机</string>
+    <string name="round">往返</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

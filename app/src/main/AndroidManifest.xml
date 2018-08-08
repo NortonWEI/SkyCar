@@ -45,8 +45,13 @@
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
             android:name=".HomeActivity"
-            android:label="Skycar-车来了"
-            android:theme="@style/AppTheme.RedActionBar"/>
+            android:label=""
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".AirportPickupActivity"
+            android:label=""
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
     </application>
 
 </manifest>

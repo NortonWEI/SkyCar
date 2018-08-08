@@ -40,6 +40,11 @@ public class UserCommentAdapter extends RecyclerView.Adapter<UserCommentAdapter.
         return 10;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
     class UserCommentViewHolder extends RecyclerView.ViewHolder {
 
         public UserCommentViewHolder(@NonNull View itemView) {

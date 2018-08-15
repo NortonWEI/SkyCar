@@ -22,6 +22,12 @@ public class AuthCodeActivity extends AppCompatActivity {
     }
 
     @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -47,6 +53,7 @@ public class AuthCodeActivity extends AppCompatActivity {
         nextButton.setOnClickListener(view -> {
             Intent intent = ProfileSetActivity.makeIntent(AuthCodeActivity.this);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

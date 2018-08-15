@@ -63,7 +63,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:queryHint="@string/search_companion_bus"
+                            android:iconifiedByDefault="false" />
                     </LinearLayout>
 
                 </LinearLayout>

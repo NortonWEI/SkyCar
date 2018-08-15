@@ -24,6 +24,12 @@ public class ProfileSetActivity extends AppCompatActivity {
     }
 
     @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -51,6 +57,7 @@ public class ProfileSetActivity extends AppCompatActivity {
         nextButton.setOnClickListener(view -> {
             Intent intent = PasswordSetActivity.makeIntent(ProfileSetActivity.this);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
 
         maleButton.setOnClickListener(view -> {

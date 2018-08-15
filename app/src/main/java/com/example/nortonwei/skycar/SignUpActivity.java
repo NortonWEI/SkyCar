@@ -141,6 +141,7 @@ public class SignUpActivity extends AppCompatActivity {
         nextButton.setOnClickListener(view -> {
             Intent intent = AuthCodeActivity.makeIntent(SignUpActivity.this);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

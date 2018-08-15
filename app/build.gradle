@@ -47,7 +47,12 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
     //ultra view pager
-    compile ('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
+    compile('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
         transitive = true
     }
+
+    //date time picker
+    compile 'com.github.florent37:singledateandtimepicker:2.0.7'
+
+    compile 'com.contrarywind:Android-PickerView:4.1.6'
 }

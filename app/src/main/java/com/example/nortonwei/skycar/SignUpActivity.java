@@ -112,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
         countryRegionEditText.setOnClickListener(view -> {
             AlertDialog.Builder singleChoiceDialog =
                     new AlertDialog.Builder(SignUpActivity.this);
-            singleChoiceDialog.setTitle("请选择手机号所在国家或地区");
+            singleChoiceDialog.setTitle(getString(R.string.choose_number_region));
 
             if (countryChoice == -1) {
                 singleChoiceDialog.setSingleChoiceItems(countryList, 0, (dialog, which) -> countryChoice = which);
@@ -120,13 +120,16 @@ public class SignUpActivity extends AppCompatActivity {
                 singleChoiceDialog.setSingleChoiceItems(countryList, countryChoice, (dialog, which) -> countryChoice = which);
             }
 
-            singleChoiceDialog.setPositiveButton("确定",
+            singleChoiceDialog.setPositiveButton(getString(R.string.confirm),
                     (dialog, which) -> {
                         if (countryChoice != -1) {
                             countryRegionEditText.setText(countryList[countryChoice]);
                             countryCodeEditText.setText(countryCodeList[countryChoice] + "  ");
                         }
                     });
+            singleChoiceDialog.setNeutralButton(getString(R.string.cancel), (dialog, which) -> {
+                dialog.dismiss();
+            });
             singleChoiceDialog.show();
         });
 

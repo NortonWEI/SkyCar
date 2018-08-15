@@ -65,7 +65,8 @@
                             android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:queryHint="@string/search_companion_bus"
-                            android:iconifiedByDefault="false" />
+                            android:iconifiedByDefault="false"
+                            android:background="@android:color/transparent"/>
                     </LinearLayout>
 
                 </LinearLayout>

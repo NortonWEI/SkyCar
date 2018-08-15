@@ -9,6 +9,9 @@
     <string name="forget_password">忘记密码？</string>
     <string name="condition_term">注册即代表阅读并同意使用条款和隐私政策</string>
     <string name="country_region">国家/地区</string>
+    <string name="choose_number_region">请选择手机号所在国家或地区</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
     <string name="input_auth_code">输入验证码</string>
     <string name="auth_code_hint">输入6位验证码</string>
     <string name="resend">重新发送</string>
@@ -59,6 +62,7 @@
     <string name="please_input_arrive">请输入送达地</string>
     <string name="time">时间</string>
     <string name="use_car_time">用车时间</string>
+    <string name="choose_use_car_time">请选择用车时间</string>
     <string name="depart">出发</string>
     <string name="please_input_depart">请输入出发地</string>
     <string name="depart_time">出发时间</string>
@@ -67,6 +71,26 @@
     <string name="base_price">基础价</string>
     <string name="price_rule">计价规则</string>
     <string name="wait_hint">以实际降落时间开始计算，免费等待九十分钟</string>
+    <string name="confirm_trip">确认行程</string>
+    <string name="flight_change_hint">若航班行程改变，请及时联系接单司机。</string>
+    <string name="people_number">人数</string>
+    <string name="choose_people_number">请选择乘车人数</string>
+    <string name="luggage_number">行李数</string>
+    <string name="choose_luggage_number">请选择行李数</string>
+    <string name="contact_person">联系人</string>
+    <string name="fill_contact_person">请填写联系人姓名</string>
+    <string name="common_contact_person">常用联系人</string>
+    <string name="mobile_number">手机号</string>
+    <string name="fill_mobile_number">请填写手机号</string>
+    <string name="standby_mobile_number">备用手机号</string>
+    <string name="flight_number">航班号</string>
+    <string name="fill_flight_number">请填写航班号，出行更省心</string>
+    <string name="car_share">拼车出行</string>
+    <string name="check_car_share_rule">查看拼车规则</string>
+    <string name="show_card_pickup">举牌接机</string>
+    <string name="online_pay_hint">在线支付，9.8折</string>
+    <string name="offline_pay_hint">上车付</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nortonwei.skycar">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -53,6 +53,11 @@
             android:name=".AirportPickupActivity"
             android:label=""
             android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".ConfirmTripActivity"
+            android:label=""
+            android:parentActivityName=".AirportPickupActivity"
             android:theme="@style/AppTheme.RedActionBar" />
     </application>
 

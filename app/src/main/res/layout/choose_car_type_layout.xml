@@ -61,13 +61,13 @@
 
                 <Button
                     android:id="@+id/button6"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="16dp"
                     android:text="@string/price_rule"
+                    android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/hint"/>
             </RelativeLayout>
 

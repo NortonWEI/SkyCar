@@ -308,12 +308,12 @@
                             android:hint="@string/fill_contact_person"
                             android:inputType="textPersonName"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/button7"
+                            app:layout_constraintEnd_toStartOf="@+id/frequent_passenger_button"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
-                            android:id="@+id/button7"
+                            android:id="@+id/frequent_passenger_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"

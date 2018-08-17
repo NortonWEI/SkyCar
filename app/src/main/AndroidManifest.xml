@@ -59,6 +59,16 @@
             android:label=""
             android:parentActivityName=".AirportPickupActivity"
             android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".FrequentPassengerActivity"
+            android:label=""
+            android:parentActivityName=".ConfirmTripActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".AddFrequentPassengerActivity"
+            android:label=""
+            android:parentActivityName=".FrequentPassengerActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
     </application>
 
 </manifest>

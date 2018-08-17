@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -149,6 +147,13 @@ public class ConfirmTripActivity extends AppCompatActivity {
             })
                     .setLayoutRes(R.layout.layout_choose_luggage_number)
                     .show();
+        });
+
+        Button frequentPassengerButton = (Button) findViewById(R.id.frequent_passenger_button);
+        frequentPassengerButton.setOnClickListener(view -> {
+            Intent intent = FrequentPassengerActivity.makeIntent(this);
+            startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

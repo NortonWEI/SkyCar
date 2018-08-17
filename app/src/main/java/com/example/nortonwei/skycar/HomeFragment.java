@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
 
         for (int i=0; i<10; i++) {
             LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = vi.inflate(R.layout.user_comment_list_layout, null);
+            View v = vi.inflate(R.layout.layout_user_comment_list, null);
 
             linearLayout.addView(v);
         }

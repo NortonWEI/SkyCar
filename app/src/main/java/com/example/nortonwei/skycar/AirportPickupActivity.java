@@ -7,7 +7,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,7 +72,7 @@ public class AirportPickupActivity extends AppCompatActivity {
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.pickup_dropoff_linear);
         LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View useCarInfoView = vi.inflate(R.layout.use_car_info_layout, linearLayout, false);
+        View useCarInfoView = vi.inflate(R.layout.layout_use_car_info, linearLayout, false);
         EditText chooseAirportEditText = (EditText) useCarInfoView.findViewById(R.id.choose_airport_editText);
         TextView arriveTextView = (TextView) useCarInfoView.findViewById(R.id.arrive_textView);
         EditText arriveEditText = (EditText) useCarInfoView.findViewById(R.id.arrive_editText);
@@ -82,7 +81,7 @@ public class AirportPickupActivity extends AppCompatActivity {
 
         SearchView searchView = (SearchView) useCarInfoView.findViewById(R.id.pickup_dropoff_searchView);
 
-        View carTypeView = vi.inflate(R.layout.choose_car_type_layout, linearLayout, false);
+        View carTypeView = vi.inflate(R.layout.layout_choose_car_type, linearLayout, false);
         linearLayout.addView(carTypeView,2);
 
         UltraViewPager ultraViewPager = (UltraViewPager) carTypeView.findViewById(R.id.car_type_ultraViewPager);
@@ -166,30 +165,11 @@ public class AirportPickupActivity extends AppCompatActivity {
         });
 
         useCarTimeEditText.setOnClickListener((View view) -> {
-//            new SingleDateAndTimePickerDialog.Builder(AirportPickupActivity.this)
-//                    .curved()
-//                    .mainColor(getResources().getColor(R.color.themeRed))
-//                    .displayYears(true)
-//                    .displayAmPm(false)
-//                    .mustBeOnFuture()
-//                    .displayListener(new SingleDateAndTimePickerDialog.DisplayListener() {
-//                        @Override
-//                        public void onDisplayed(SingleDateAndTimePicker picker) {
-//                            //retrieve the SingleDateAndTimePicker
-//                        }
-//                    })
-//                    .title(getString(R.string.choose_use_car_time))
-//                    .listener(new SingleDateAndTimePickerDialog.Listener() {
-//                        @Override
-//                        public void onDateSelected(Date date) {
-
-//                        }
-//                    }).display();
             Calendar startDate = Calendar.getInstance();
             Calendar endDate = Calendar.getInstance();
             endDate.set(2050,12,31);
 
-            TimePickerView pvTime = new TimePickerBuilder(AirportPickupActivity.this, new OnTimeSelectListener() {
+            TimePickerView selectedTime = new TimePickerBuilder(AirportPickupActivity.this, new OnTimeSelectListener() {
                 @Override
                 public void onTimeSelect(Date date, View v) {
                     useCarTimeEditText.setText(date.toString());
@@ -205,7 +185,7 @@ public class AirportPickupActivity extends AppCompatActivity {
                     .setRangDate(startDate, endDate)
                     .isCenterLabel(true)
                     .build();
-            pvTime.show();
+            selectedTime.show();
         });
 
         continueReserveButton.setOnClickListener(view -> {

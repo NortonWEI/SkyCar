@@ -23,12 +23,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.main_action_bar_layout);
+        getSupportActionBar().setCustomView(R.layout.layout_main_action_bar);
         setUpBottomNav();
     }
 
     static void setUpActionBar(AppCompatActivity activity, String title) {
-        View view = activity.getLayoutInflater().inflate(R.layout.main_action_bar_layout, null);
+        View view = activity.getLayoutInflater().inflate(R.layout.layout_main_action_bar, null);
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT,
                 ActionBar.LayoutParams.MATCH_PARENT,

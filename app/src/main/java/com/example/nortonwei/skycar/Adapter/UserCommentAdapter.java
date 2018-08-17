@@ -26,7 +26,7 @@ public class UserCommentAdapter extends RecyclerView.Adapter<UserCommentAdapter.
     @Override
     public UserCommentViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.user_comment_list_layout, null);
+        View view = inflater.inflate(R.layout.layout_user_comment_list, null);
         return new UserCommentViewHolder(view);
     }
 

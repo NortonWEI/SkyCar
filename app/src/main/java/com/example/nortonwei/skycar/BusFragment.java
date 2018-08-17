@@ -4,7 +4,6 @@ package com.example.nortonwei.skycar;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import java.util.ArrayList;
 
@@ -67,7 +65,7 @@ public class BusFragment extends Fragment {
 
         for (int i=0; i<10; i++) {
             LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = vi.inflate(R.layout.bus_list_layout, null);
+            View v = vi.inflate(R.layout.layout_bus_list, null);
 
             if (i == 9) {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

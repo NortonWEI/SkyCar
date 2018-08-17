@@ -1,14 +1,11 @@
 package com.example.nortonwei.skycar.Adapter;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,7 +30,7 @@ public class UltraPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.car_type_listitem, null);
+        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(container.getContext()).inflate(R.layout.listitem_car_type, null);
         ImageView imageView = (ImageView) relativeLayout.findViewById(R.id.car_type_imageView);
         TextView textView = (TextView) relativeLayout.findViewById(R.id.car_type_textView);
         container.addView(relativeLayout);

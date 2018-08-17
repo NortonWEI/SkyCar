@@ -90,7 +90,12 @@
     <string name="show_card_pickup">举牌接机</string>
     <string name="online_pay_hint">在线支付，9.8折</string>
     <string name="offline_pay_hint">上车付</string>
-
+    <string name="adult">成人</string>
+    <string name="child">儿童</string>
+    <string name="seven_plus">&gt;7岁</string>
+    <string name="seven_minus">&lt;7岁</string>
+    <string name="big_luggage">大行李</string>
+    <string name="small_luggage">小行李</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

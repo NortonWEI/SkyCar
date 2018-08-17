@@ -2,16 +2,24 @@ package com.example.nortonwei.skycar;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.jmf.addsubutils.AddSubUtils;
+
+import me.shaohui.bottomdialog.BottomDialog;
+
 
 public class ConfirmTripActivity extends AppCompatActivity {
 
@@ -51,17 +59,97 @@ public class ConfirmTripActivity extends AppCompatActivity {
     private void setUpUIComponents() {
         Button onlinePayButton = (Button) findViewById(R.id.online_pay_button);
         SpannableString onlinePayButtonText = new SpannableString("¥123" + "\n" + getString(R.string.online_pay_hint));
-//        onlinePayButtonText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        onlinePayButtonText.setSpan(new ForegroundColorSpan(Color.GRAY), 5, onlinePayButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         onlinePayButtonText.setSpan(new RelativeSizeSpan(0.8f), 5, onlinePayButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         onlinePayButton.setText(onlinePayButtonText);
 
         Button offlinePayButton = (Button) findViewById(R.id.offline_pay_button);
         SpannableString offlinePayButtonText = new SpannableString("$12" + "\n" + getString(R.string.offline_pay_hint));
-//        offlinePayButtonText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        offlinePayButtonText.setSpan(new ForegroundColorSpan(Color.GRAY), 5, offlinePayButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         offlinePayButtonText.setSpan(new RelativeSizeSpan(0.8f), 4, offlinePayButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         offlinePayButton.setText(offlinePayButtonText);
+
+        EditText peopleNumberEditText = (EditText) findViewById(R.id.people_number_editText);
+        EditText luggageNumberEditText = (EditText) findViewById(R.id.luggage_number_editText);
+
+        peopleNumberEditText.setOnClickListener(view -> {
+            BottomDialog bottomDialog = BottomDialog.create(getSupportFragmentManager());
+
+            bottomDialog.setViewListener(new BottomDialog.ViewListener() {
+                        @Override
+                        public void bindView(View v) {
+                            Button confirmButton = (Button) v.findViewById(R.id.people_number_confirm_button);
+                            Button cancelButton = (Button) v.findViewById(R.id.people_number_cancel_button);
+
+                            AddSubUtils adultAddSubUtils = (AddSubUtils) v.findViewById(R.id.adult_add_sub);
+                            adultAddSubUtils.setBuyMax(30)
+                                    .setBuyMin(0)
+                                    .setCurrentNumber(0);
+
+                            AddSubUtils sevenPlusAddSubUtils = (AddSubUtils) v.findViewById(R.id.seven_plus_child_add_sub);
+                            sevenPlusAddSubUtils.setBuyMax(30)
+                                    .setBuyMin(0)
+                                    .setCurrentNumber(0);
+
+                            AddSubUtils sevenMinusAddSubUtils = (AddSubUtils) v.findViewById(R.id.seven_minus_child_add_sub);
+                            sevenMinusAddSubUtils.setBuyMax(30)
+                                    .setBuyMin(0)
+                                    .setCurrentNumber(0);
+
+                            confirmButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    bottomDialog.dismiss();
+                                }
+                            });
+
+                            cancelButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    bottomDialog.dismiss();
+                                }
+                            });
+                        }
+                    })
+                    .setLayoutRes(R.layout.layout_choose_people_number)
+                    .show();
+        });
+
+        luggageNumberEditText.setOnClickListener(view -> {
+            BottomDialog bottomDialog = BottomDialog.create(getSupportFragmentManager());
+
+            bottomDialog.setViewListener(new BottomDialog.ViewListener() {
+                @Override
+                public void bindView(View v) {
+                    Button confirmButton = (Button) v.findViewById(R.id.luggage_number_confirm_button);
+                    Button cancelButton = (Button) v.findViewById(R.id.luggage_number_cancel_button);
+
+                    AddSubUtils bigLuggageAddSubUtils = (AddSubUtils) v.findViewById(R.id.big_luggage_add_sub);
+                    bigLuggageAddSubUtils.setBuyMax(30)
+                            .setBuyMin(0)
+                            .setCurrentNumber(0);
+
+                    AddSubUtils smallLuggageAddSubUtils = (AddSubUtils) v.findViewById(R.id.small_luggage_add_sub);
+                    smallLuggageAddSubUtils.setBuyMax(30)
+                            .setBuyMin(0)
+                            .setCurrentNumber(0);
+
+                    confirmButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
+                        }
+                    });
+
+                    cancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
+                        }
+                    });
+                }
+            })
+                    .setLayoutRes(R.layout.layout_choose_luggage_number)
+                    .show();
+        });
     }
 
     public static Intent makeIntent(Context context) {

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:jmf="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/people_number_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/cancel"
+            android:textColor="@color/carbon_grey_400" />
+
+        <Button
+            android:id="@+id/people_number_confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:text="@string/confirm"
+            android:textColor="@color/themeRed" />
+
+        <TextView
+            android:id="@+id/people_number_popup_title_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/choose_people_number"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/carbon_grey_200" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/adult_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="@string/adult"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <com.jmf.addsubutils.AddSubUtils
+                android:id="@+id/adult_add_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                jmf:ImageWidth="40dp"
+                jmf:contentBackground="@android:color/white"
+                jmf:contentTextColor="@android:color/black"
+                jmf:contentTextSize="7sp"
+                jmf:contentWidth="40dp"
+                jmf:editable="false"
+                jmf:leftBackground="@android:color/white"
+                jmf:rightBackground="@android:color/white"
+                jmf:leftResources="@drawable/minus"
+                jmf:rightResources="@drawable/plus"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/seven_plus_child_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="@string/child"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <com.jmf.addsubutils.AddSubUtils
+                android:id="@+id/seven_plus_child_add_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                jmf:ImageWidth="40dp"
+                jmf:contentBackground="@android:color/white"
+                jmf:contentTextColor="@android:color/black"
+                jmf:contentTextSize="7sp"
+                jmf:contentWidth="40dp"
+                jmf:editable="false"
+                jmf:leftBackground="@android:color/white"
+                jmf:rightBackground="@android:color/white"
+                jmf:leftResources="@drawable/minus"
+                jmf:rightResources="@drawable/plus"/>
+
+            <TextView
+                android:id="@+id/seven_plus_child_hint_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/seven_plus_child_textView"
+                android:text="@string/seven_plus"
+                android:textColor="@color/carbon_grey_700" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/seven_minus_child_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="@string/child"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <com.jmf.addsubutils.AddSubUtils
+                android:id="@+id/seven_minus_child_add_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                jmf:ImageWidth="40dp"
+                jmf:contentBackground="@android:color/white"
+                jmf:contentTextColor="@android:color/black"
+                jmf:contentTextSize="7sp"
+                jmf:contentWidth="40dp"
+                jmf:editable="false"
+                jmf:leftBackground="@android:color/white"
+                jmf:rightBackground="@android:color/white"
+                jmf:leftResources="@drawable/minus"
+                jmf:rightResources="@drawable/plus"/>
+
+            <TextView
+                android:id="@+id/seven_minus_child_hint_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/seven_minus_child_textView"
+                android:text="@string/seven_minus"
+                android:textColor="@color/carbon_grey_700" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

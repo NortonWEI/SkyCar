@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OfflinePaymentSuccessActivity">
+
+    <ImageView
+        android:id="@+id/payment_success_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        app:srcCompat="@drawable/payment_success" />
+
+    <RelativeLayout
+        android:id="@+id/pay_method_relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/payment_success_imageView"
+        android:layout_marginTop="48dp" >
+
+        <TextView
+            android:id="@+id/pay_method_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pay_method"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/on_board_pay_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/pay_method_textView"
+            android:text="@string/on_board_pay"
+            android:textColor="@color/themeRed"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/order_amount_relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/pay_method_relativeLayout"
+        android:layout_marginTop="8dp" >
+
+        <TextView
+            android:id="@+id/order_amount_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_amount"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/order_number_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/order_amount_textView"
+            android:text="AUD123"
+            android:textColor="@color/themeRed"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/thank_you_choose_skycar_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_amount_relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/thank_you_choose_skycar"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/skycar_service_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:text="@string/skycar_service" />
+
+    <TextView
+        android:id="@+id/contact_us_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/skycar_service_textView"
+        android:layout_centerHorizontal="true"
+        android:text="@string/if_question_contact_us" />
+
+</RelativeLayout>

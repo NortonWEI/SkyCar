@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.jmf.addsubutils.AddSubUtils;
 
@@ -76,41 +75,41 @@ public class ConfirmTripActivity extends AppCompatActivity {
             BottomDialog bottomDialog = BottomDialog.create(getSupportFragmentManager());
 
             bottomDialog.setViewListener(new BottomDialog.ViewListener() {
+                @Override
+                public void bindView(View v) {
+                    Button confirmButton = (Button) v.findViewById(R.id.people_number_confirm_button);
+                    Button cancelButton = (Button) v.findViewById(R.id.people_number_cancel_button);
+
+                    AddSubUtils adultAddSubUtils = (AddSubUtils) v.findViewById(R.id.adult_add_sub);
+                    adultAddSubUtils.setBuyMax(30)
+                            .setBuyMin(0)
+                            .setCurrentNumber(0);
+
+                    AddSubUtils sevenPlusAddSubUtils = (AddSubUtils) v.findViewById(R.id.seven_plus_child_add_sub);
+                    sevenPlusAddSubUtils.setBuyMax(30)
+                            .setBuyMin(0)
+                            .setCurrentNumber(0);
+
+                    AddSubUtils sevenMinusAddSubUtils = (AddSubUtils) v.findViewById(R.id.seven_minus_child_add_sub);
+                    sevenMinusAddSubUtils.setBuyMax(30)
+                            .setBuyMin(0)
+                            .setCurrentNumber(0);
+
+                    confirmButton.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void bindView(View v) {
-                            Button confirmButton = (Button) v.findViewById(R.id.people_number_confirm_button);
-                            Button cancelButton = (Button) v.findViewById(R.id.people_number_cancel_button);
-
-                            AddSubUtils adultAddSubUtils = (AddSubUtils) v.findViewById(R.id.adult_add_sub);
-                            adultAddSubUtils.setBuyMax(30)
-                                    .setBuyMin(0)
-                                    .setCurrentNumber(0);
-
-                            AddSubUtils sevenPlusAddSubUtils = (AddSubUtils) v.findViewById(R.id.seven_plus_child_add_sub);
-                            sevenPlusAddSubUtils.setBuyMax(30)
-                                    .setBuyMin(0)
-                                    .setCurrentNumber(0);
-
-                            AddSubUtils sevenMinusAddSubUtils = (AddSubUtils) v.findViewById(R.id.seven_minus_child_add_sub);
-                            sevenMinusAddSubUtils.setBuyMax(30)
-                                    .setBuyMin(0)
-                                    .setCurrentNumber(0);
-
-                            confirmButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    bottomDialog.dismiss();
-                                }
-                            });
-
-                            cancelButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    bottomDialog.dismiss();
-                                }
-                            });
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
                         }
-                    })
+                    });
+
+                    cancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
+                        }
+                    });
+                }
+            })
                     .setLayoutRes(R.layout.layout_choose_people_number)
                     .show();
         });
@@ -180,6 +179,9 @@ public class ConfirmTripActivity extends AppCompatActivity {
                     confirmButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Intent intent = OnlinePaymentSuccessActivity.makeIntent(ConfirmTripActivity.this);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                             bottomDialog.dismiss();
                         }
                     });
@@ -239,6 +241,13 @@ public class ConfirmTripActivity extends AppCompatActivity {
             })
                     .setLayoutRes(R.layout.layout_online_payment)
                     .show();
+        });
+
+        offlinePayButton.setOnClickListener(view -> {
+            Intent intent = OfflinePaymentSuccessActivity.makeIntent(this);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

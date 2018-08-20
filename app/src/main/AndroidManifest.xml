@@ -69,6 +69,14 @@
             android:label=""
             android:parentActivityName=".FrequentPassengerActivity"
             android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".OfflinePaymentSuccessActivity"
+            android:label=""
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".OnlinePaymentSuccessActivity"
+            android:label=""
+            android:theme="@style/AppTheme.RedActionBar" />
     </application>
 
 </manifest>

@@ -106,6 +106,15 @@
     <string name="alipay">支付宝支付</string>
     <string name="wechat_pay">微信支付</string>
     <string name="skycar_pay">余额支付</string>
+    <string name="upload_successful">提交成功</string>
+    <string name="pay_successful">支付成功</string>
+    <string name="thank_you_choose_skycar">感谢您选择与Skycar同行</string>
+    <string name="if_question_contact_us">如有任何问题请联系客服</string>
+    <string name="skycar_service">Skycar车来了将竭诚为您服务</string>
+    <string name="pay_method">支付方式：</string>
+    <string name="on_board_pay">上车支付</string>
+    <string name="order_amount">订单金额：</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

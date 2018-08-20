@@ -52,13 +52,9 @@ dependencies {
     }
 
     //date time picker
-    compile 'com.github.florent37:singledateandtimepicker:2.0.7'
-
     compile 'com.contrarywind:Android-PickerView:4.1.6'
 
     //bottom popup window
-    implementation 'com.orhanobut:dialogplus:1.11@aar'
-
     compile 'me.shaohui:bottomdialog:1.1.9'
 
     //number add subtract widget

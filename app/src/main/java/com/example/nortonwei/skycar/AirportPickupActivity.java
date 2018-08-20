@@ -16,18 +16,23 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.nortonwei.skycar.Adapter.UltraPagerAdapter;
 import com.tmall.ultraviewpager.UltraViewPager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
 public class AirportPickupActivity extends AppCompatActivity {
     final String[] airportList = {"墨尔本机场", "悉尼机场", "阿德莱德机场", "堪培拉机场", "布里斯班机场", "凯恩斯机场"};
-    int airportChoice = -1;
+    int airportChoice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,35 +144,30 @@ public class AirportPickupActivity extends AppCompatActivity {
 //        });
 
         chooseAirportEditText.setOnClickListener(view -> {
-            AlertDialog.Builder airportChoiceDialog =
-                    new AlertDialog.Builder(AirportPickupActivity.this);
-            airportChoiceDialog.setTitle(getString(R.string.please_choose_airport));
+            ArrayList airportArrayList = new ArrayList(Arrays.asList(airportList));
 
-            if (airportChoice == -1) {
-                airportChoiceDialog.setSingleChoiceItems(airportList, 0, (dialog, which) -> airportChoice = which);
-            } else {
-                airportChoiceDialog.setSingleChoiceItems(airportList, airportChoice, (dialog, which) -> airportChoice = which);
-            }
-
-            airportChoiceDialog.setPositiveButton(getString(R.string.confirm),
-                    (dialog, which) -> {
-                        if (airportChoice != -1) {
-                            chooseAirportEditText.setText(airportList[airportChoice]);
-                        } else {
-                            airportChoice = 0;
-                            chooseAirportEditText.setText(airportList[0]);
-                        }
-                    });
-            airportChoiceDialog.setNeutralButton(getString(R.string.cancel), (dialog, which) -> {
-                dialog.dismiss();
-            });
-            airportChoiceDialog.show();
+            OptionsPickerView countrySelectPicker = new OptionsPickerBuilder(AirportPickupActivity.this, new OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+                    airportChoice = options1;
+                    chooseAirportEditText.setText(airportList[options1]);
+                }
+            })
+                    .setCancelText(getString(R.string.cancel))
+                    .setSubmitText(getString(R.string.confirm))
+                    .setCancelColor(getResources().getColor(R.color.themeRed))
+                    .setSubmitColor(getResources().getColor(R.color.themeRed))
+                    .setTitleText(getString(R.string.please_choose_airport))
+                    .setSelectOptions(airportChoice)
+                    .build();
+            countrySelectPicker.setPicker(airportArrayList);
+            countrySelectPicker.show();
         });
 
         useCarTimeEditText.setOnClickListener((View view) -> {
             Calendar startDate = Calendar.getInstance();
             Calendar endDate = Calendar.getInstance();
-            endDate.set(2050,12,31);
+            endDate.set(2050,11,31);
 
             TimePickerView selectedTime = new TimePickerBuilder(AirportPickupActivity.this, new OnTimeSelectListener() {
                 @Override

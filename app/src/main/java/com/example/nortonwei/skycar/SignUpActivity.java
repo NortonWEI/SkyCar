@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -13,17 +12,22 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class SignUpActivity extends AppCompatActivity {
-    int countryChoice = -1;
+    int countryChoice = 0;
     final String[] countryList = {"澳大利亚", "新西兰", "中国", "中国香港", "中国澳门", "中国台湾", "蒙古", "朝鲜", "韩国", "日本", "菲律宾", "越南", "老挝", "柬埔寨", "缅甸", "泰国", "马来西亚", "文莱", "新加坡", "印度尼西亚", "东帝汶"};
     final String[] countryCodeList = {"+61", "+64", "+86", "+852", "+853", "+886", "+976", "+850", "+82", "+81", "+63", "+84", "+856", "+855", "+95", "+66", "+60", "+673", "+65", "+62", "+670"};
 
@@ -105,32 +109,30 @@ public class SignUpActivity extends AppCompatActivity {
         EditText countryCodeEditText = (EditText) findViewById(R.id.country_code_editText);
 
         countryRegionEditText.setCursorVisible(false);
-        countryRegionEditText.setText(countryList[0]);
+        countryRegionEditText.setText(countryList[countryChoice]);
         countryRegionHintEditText.setText(getString(R.string.country_region) + "  ");
-        countryCodeEditText.setText(countryCodeList[0] + "  ");
+        countryCodeEditText.setText(countryCodeList[countryChoice] + "  ");
 
         countryRegionEditText.setOnClickListener(view -> {
-            AlertDialog.Builder singleChoiceDialog =
-                    new AlertDialog.Builder(SignUpActivity.this);
-            singleChoiceDialog.setTitle(getString(R.string.choose_number_region));
+            ArrayList countryArrayList = new ArrayList(Arrays.asList(countryList));
 
-            if (countryChoice == -1) {
-                singleChoiceDialog.setSingleChoiceItems(countryList, 0, (dialog, which) -> countryChoice = which);
-            } else {
-                singleChoiceDialog.setSingleChoiceItems(countryList, countryChoice, (dialog, which) -> countryChoice = which);
-            }
-
-            singleChoiceDialog.setPositiveButton(getString(R.string.confirm),
-                    (dialog, which) -> {
-                        if (countryChoice != -1) {
-                            countryRegionEditText.setText(countryList[countryChoice]);
-                            countryCodeEditText.setText(countryCodeList[countryChoice] + "  ");
-                        }
-                    });
-            singleChoiceDialog.setNeutralButton(getString(R.string.cancel), (dialog, which) -> {
-                dialog.dismiss();
-            });
-            singleChoiceDialog.show();
+            OptionsPickerView countrySelectPicker = new OptionsPickerBuilder(SignUpActivity.this, new OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+                    countryChoice = options1;
+                    countryRegionEditText.setText(countryList[options1]);
+                    countryCodeEditText.setText(countryCodeList[options1] + "  ");
+                }
+            })
+                    .setCancelText(getString(R.string.cancel))
+                    .setSubmitText(getString(R.string.confirm))
+                    .setCancelColor(getResources().getColor(R.color.themeRed))
+                    .setSubmitColor(getResources().getColor(R.color.themeRed))
+                    .setTitleText(getString(R.string.choose_number_region))
+                    .setSelectOptions(countryChoice)
+                    .build();
+            countrySelectPicker.setPicker(countryArrayList);
+            countrySelectPicker.show();
         });
 
         phoneNumberEditText.setOnClickListener(view -> {

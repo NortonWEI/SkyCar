@@ -62,6 +62,13 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
+
+        Button reserveCarButton = (Button) fragmentView.findViewById(R.id.reserve_car_button);
+        reserveCarButton.setOnClickListener(view -> {
+            Intent intent = ReserveCarActivity.makeIntent(getContext());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        });
     }
 
     private void setUpCommentView(View fragmentView) {

@@ -98,7 +98,7 @@ public class AirportPickupActivity extends AppCompatActivity {
         ultraViewPager.setRatio(2.0f);
         ultraViewPager.setMaxHeight(800);
         ultraViewPager.setAutoMeasureHeight(true);
-        UltraViewPager.Orientation gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
+//        UltraViewPager.Orientation gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
 
         pickUpButton.setOnClickListener(view -> {
             if (pickUpButton.getCompoundDrawables()[1].getConstantState().equals(getResources().getDrawable(R.drawable.pickup_unselected).getConstantState())) {

@@ -114,7 +114,8 @@
     <string name="pay_method">支付方式：</string>
     <string name="on_board_pay">上车支付</string>
     <string name="order_amount">订单金额：</string>
-
+    <string name="where_to_start">您从哪出发</string>
+    <string name="where_to_go">您想要去哪</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

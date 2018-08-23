@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.example.nortonwei.skycar.Adapter.UltraPagerAdapter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -97,8 +99,8 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
                 }
             }, 300);
         } else {
-        super.finish();
-        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
+            super.finish();
+            overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
         }
     }
 
@@ -211,10 +213,30 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
                     confirmButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = OnlinePaymentSuccessActivity.makeIntent(ReserveCarActivity.this);
-                            startActivity(intent);
-                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-                            bottomDialog.dismiss();
+                            if (!skycarCheckBox.isChecked()) {
+                                Intent intent = OnlinePaymentSuccessActivity.makeIntent(ReserveCarActivity.this);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                                bottomDialog.dismiss();
+                            } else {
+                                CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ReserveCarActivity.this)
+                                        .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                                        .setHeaderView(R.layout.layout_payment_success_dialog_header)
+                                        .setTitle(getString(R.string.confirm_skycar_pay))
+                                        .setTextGravity(Gravity.CENTER_HORIZONTAL)
+                                        .setMessage("立即支付5.8元\n" + getString(R.string.skycar_protect_you))
+                                        .addButton(getString(R.string.confirm), getResources().getColor(R.color.themeRed), getResources().getColor(R.color.white), CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                            dialog.dismiss();
+                                            Intent intent = OnlinePaymentSuccessActivity.makeIntent(ReserveCarActivity.this);
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                                            bottomDialog.dismiss();
+                                        }).addButton(getString(R.string.cancel), getResources().getColor(R.color.carbon_grey_400), getResources().getColor(R.color.white), CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                            dialog.dismiss();
+                                        });
+
+                                builder.show();
+                            }
                         }
                     });
 

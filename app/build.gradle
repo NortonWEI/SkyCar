@@ -68,4 +68,7 @@ dependencies {
 
     //google locations
     compile 'com.google.android.gms:play-services-location:15.0.1'
+
+    //center popup dialog
+    compile 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
 }

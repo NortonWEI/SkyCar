@@ -3,12 +3,12 @@ package com.example.nortonwei.skycar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.jmf.addsubutils.AddSubUtils;
 
 import me.shaohui.bottomdialog.BottomDialog;
@@ -179,10 +180,30 @@ public class ConfirmTripActivity extends AppCompatActivity {
                     confirmButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = OnlinePaymentSuccessActivity.makeIntent(ConfirmTripActivity.this);
-                            startActivity(intent);
-                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-                            bottomDialog.dismiss();
+                            if (!skycarCheckBox.isChecked()) {
+                                Intent intent = OnlinePaymentSuccessActivity.makeIntent(ConfirmTripActivity.this);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                                bottomDialog.dismiss();
+                            } else {
+                                CFAlertDialog.Builder builder = new CFAlertDialog.Builder(ConfirmTripActivity.this)
+                                        .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                                        .setHeaderView(R.layout.layout_payment_success_dialog_header)
+                                        .setTitle(getString(R.string.confirm_skycar_pay))
+                                        .setTextGravity(Gravity.CENTER_HORIZONTAL)
+                                        .setMessage("立即支付5.8元\n" + getString(R.string.skycar_protect_you))
+                                        .addButton(getString(R.string.confirm), getResources().getColor(R.color.themeRed), getResources().getColor(R.color.white), CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                            dialog.dismiss();
+                                            Intent intent = OnlinePaymentSuccessActivity.makeIntent(ConfirmTripActivity.this);
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                                            bottomDialog.dismiss();
+                                        }).addButton(getString(R.string.cancel), getResources().getColor(R.color.carbon_grey_400), getResources().getColor(R.color.white), CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, (dialog, which) -> {
+                                            dialog.dismiss();
+                                        });
+
+                                builder.show();
+                            }
                         }
                     });
 

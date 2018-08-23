@@ -116,6 +116,8 @@
     <string name="order_amount">订单金额：</string>
     <string name="where_to_start">您从哪出发</string>
     <string name="where_to_go">您想要去哪</string>
+    <string name="confirm_skycar_pay">确认余额支付</string>
+    <string name="skycar_protect_you">让Skycar安全准时的为你保驾护航</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

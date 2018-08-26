@@ -118,6 +118,20 @@
     <string name="where_to_go">您想要去哪</string>
     <string name="confirm_skycar_pay">确认余额支付</string>
     <string name="skycar_protect_you">让Skycar安全准时的为你保驾护航</string>
+    <string name="common_address">常用地址</string>
+    <string name="acceptable_time_range">可接受时间范围</string>
+    <string name="expected_arrive_time">期望到达时间</string>
+    <string name="intercity_bus_declaration">城际班次说明</string>
+    <string name="add_common_address">新增地址</string>
+    <string name="city">城市</string>
+    <string name="choose_city">请选择您的城市</string>
+    <string name="state">州</string>
+    <string name="choose_state">请选择您的州</string>
+    <string name="detail_address">详细地址</string>
+    <string name="input_detail_address">请输入您的详细地址</string>
+    <string name="postcode">邮编</string>
+    <string name="input_postcode">请输入您当地的邮政编码</string>
+    <string name="order_detail">订单详情</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

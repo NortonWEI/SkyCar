@@ -132,6 +132,8 @@
     <string name="postcode">邮编</string>
     <string name="input_postcode">请输入您当地的邮政编码</string>
     <string name="order_detail">订单详情</string>
+    <string name="immediate_join">立即加入</string>
+    <string name="contact_service">联系客服</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

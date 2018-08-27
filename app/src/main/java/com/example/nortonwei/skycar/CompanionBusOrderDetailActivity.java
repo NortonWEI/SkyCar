@@ -78,7 +78,9 @@ public class CompanionBusOrderDetailActivity extends AppCompatActivity implement
     private void setUpUIComponents() {
         Button joinButton = (Button) findViewById(R.id.join_button);
         joinButton.setOnClickListener(view -> {
-
+            Intent intent = JoinCompanionBusActivity.makeIntent(this);
+            startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

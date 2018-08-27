@@ -120,7 +120,17 @@
             android:name=".CompanionBusOrderDetailActivity"
             android:label=""
             android:parentActivityName=".CompanionBusResultActivity"
-            android:theme="@style/AppTheme.RedActionBar"/>
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".JoinCompanionBusActivity"
+            android:label=""
+            android:parentActivityName=".CompanionBusOrderDetailActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".ConfirmCompanionBusActivity"
+            android:label=""
+            android:parentActivityName=".JoinCompanionBusActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
     </application>
 
 </manifest>

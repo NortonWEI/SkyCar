@@ -131,6 +131,16 @@
             android:label=""
             android:parentActivityName=".JoinCompanionBusActivity"
             android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".CharteredTravelActivity"
+            android:label=""
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".WishListActivity"
+            android:label=""
+            android:parentActivityName=".CharteredTravelActivity"
+            android:theme="@style/AppTheme.RedActionBar"/>
     </application>
 
 </manifest>

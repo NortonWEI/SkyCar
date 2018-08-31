@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharteredTravelActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/destination_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/wish_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/drawable_wish_list_button"
+        android:elevation="20dp"
+        android:drawableLeft="@drawable/desire"
+        android:paddingLeft="130dp"
+        android:paddingRight="130dp"
+        android:drawableRight="@drawable/arrow_right"
+        android:text="@string/my_wish_list" />
+
+</RelativeLayout>

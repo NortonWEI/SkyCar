@@ -2,6 +2,7 @@ package com.example.nortonwei.skycar.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.nortonwei.skycar.CharteredTravelListActivity;
+import com.example.nortonwei.skycar.FrequentAddressActivity;
 import com.example.nortonwei.skycar.R;
 
 import java.util.ArrayList;
@@ -54,7 +57,10 @@ public class CharteredTravelAdapter extends RecyclerView.Adapter<CharteredTravel
                 //注意这里必须使用viewHolder.getPosition()而不能用i，因为为了保证动画，没有使用NotifyDatasetChanged更新位置数据
 //                mOnItemActionListener.onItemClickListener(v,cardViewHolder.getPosition());
                 Toast.makeText(context, "-单击-"+cardViewHolder.getPosition(), Toast.LENGTH_SHORT).show();
-
+                Intent intent = CharteredTravelListActivity.makeIntent(context);
+                context.startActivity(intent);
+                Activity activity = (Activity) context;
+                activity.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
             }
         });
 //        }

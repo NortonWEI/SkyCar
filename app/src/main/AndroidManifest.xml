@@ -150,7 +150,7 @@
             android:name=".CharteredTravelDetailActivity"
             android:label=""
             android:parentActivityName=".CharteredTravelListActivity"
-            android:theme="@style/AppTheme.RedActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -78,4 +78,7 @@ dependencies {
     compile 'com.github.dongjunkun:DropDownMenu:1.0.4'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
+
+    //fade-in action bar
+    compile 'com.github.ksoichiro:android-observablescrollview:1.6.0'
 }

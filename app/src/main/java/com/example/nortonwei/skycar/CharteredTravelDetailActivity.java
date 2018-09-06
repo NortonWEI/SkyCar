@@ -3,10 +3,16 @@ package com.example.nortonwei.skycar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+
+import com.example.nortonwei.skycar.Customization.ExpandTextView;
+import com.example.nortonwei.skycar.Customization.ScreenUtils;
 
 public class CharteredTravelDetailActivity extends AppCompatActivity {
 
@@ -43,11 +49,6 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
 //    }
 
     private void setUpActionBar() {
-//        HomeActivity.setUpActionBar(this, "墨尔本");
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
-
         Toolbar actionBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(actionBar);
 //        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
@@ -56,6 +57,33 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
     }
 
     private void setUpUIComponents() {
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = true;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarLayout.setTitle(getString(R.string.route_detail));
+                    isShow = true;
+                } else if(isShow) {
+                    collapsingToolbarLayout.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
+
+        ExpandTextView textView = (ExpandTextView) findViewById(R.id.trip_info_textView);
+        int width = ScreenUtils.getScreenWidth(this) - ScreenUtils.dip2px(this, 16 * 2);
+        textView.initWidth(width);
+        textView.setMaxLines(3);
+        String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+        textView.setCloseText(content);
 
     }
 

@@ -73,9 +73,10 @@ dependencies {
     compile 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
 
     //drop down menu
-    compile 'com.github.fg2q1q3q:DropDownMenu:1.1.1'
-
     compile 'com.github.dongjunkun:DropDownMenu:1.0.4'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
+
+    //pull refresh
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 }

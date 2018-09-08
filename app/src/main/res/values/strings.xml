@@ -151,7 +151,27 @@
     <string name="duration">时长</string>
     <string name="travel">出行</string>
     <string name="address">地址</string>
+    <string name="navi_on_the_way">导航查看沿途热点推荐</string>
+    <string name="journey_reference">行程参考</string>
+    <string name="user_comment">用户评价</string>
+    <string name="order_tips">下单小贴士</string>
+    <string name="good_recommendation">好看推荐</string>
+    <string name="journey_notes">*以上参考行程和建议出发时间可根据您的需要在下单时自助调整（仅出发时间），或者联系客服帮助修改。</string>
+    <string name="chartered_journey">包车出行</string>
+    <string name="group_journey">拼团出行</string>
+    <string name="choose_date">选择日期</string>
+    <string name="start_book">开始预订</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="chinese_week_string_array">
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </string-array>
 </resources>

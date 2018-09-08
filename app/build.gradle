@@ -79,4 +79,7 @@ dependencies {
 
     //pull refresh
     compile 'in.srain.cube:ultra-ptr:1.0.11'
+
+    //calendar view
+    compile 'com.haibin:calendarview:3.4.4'
 }

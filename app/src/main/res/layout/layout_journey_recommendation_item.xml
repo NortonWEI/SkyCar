@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:maxLines="1"
+                android:text="弗林德斯大街车站"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/close" />
+
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/choose_date"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <!--<CalendarView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+
+
+    <!--</CalendarView>-->
+
+    <com.haibin.calendarview.CalendarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:default_status="shrink"
+        app:calendar_show_mode="only_week_view"
+        app:calendar_content_view_id="@+id/recyclerView">
+
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            app:calendar_height="50dp"
+            app:min_year="2018"
+            app:max_year="2099"
+            app:current_day_lunar_text_color="@color/themeRed"
+            app:selected_lunar_text_color="@color/white"
+            app:current_month_lunar_text_color="@color/themeGrey"
+            app:selected_text_color="#fff"
+            app:selected_theme_color="@color/themeRed"
+            app:week_start_with="sun"
+            app:week_background="@color/white"
+            app:month_view_show_mode="mode_only_current"
+            app:week_text_color="#111"
+            app:current_day_text_color="@color/themeRed"
+            app:week_bar_view="com.example.nortonwei.skycar.Customization.ChineseWeekBar" />
+
+    </com.haibin.calendarview.CalendarLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drawable_red_theme_button"
+        android:text="@string/start_book"
+        android:textColor="@android:color/white"
+        android:layout_margin="8dp"/>
+
+</LinearLayout>

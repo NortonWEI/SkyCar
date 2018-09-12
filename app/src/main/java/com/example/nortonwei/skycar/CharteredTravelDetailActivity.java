@@ -12,17 +12,17 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -30,6 +30,8 @@ import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.example.nortonwei.skycar.Adapter.JourneyRecommendationAdapter;
 import com.example.nortonwei.skycar.Customization.ExpandTextView;
 import com.example.nortonwei.skycar.Customization.ScreenUtils;
+import com.haibin.calendarview.Calendar;
+import com.haibin.calendarview.CalendarView;
 
 import me.shaohui.bottomdialog.BottomDialog;
 
@@ -61,17 +63,9 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_login_activity, menu);
-//        return true;
-//    }
-
     private void setUpActionBar() {
         Toolbar actionBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(actionBar);
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -163,16 +157,20 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
             bottomDialog.setViewListener(new BottomDialog.ViewListener() {
                 @Override
                 public void bindView(View v) {
-//                    Button confirmButton = (Button) v.findViewById(R.id.online_payment_confirm_button);
+                    Button confirmButton = (Button) v.findViewById(R.id.start_booking_button);
                     ImageButton closeButton = (ImageButton) v.findViewById(R.id.cancel_button);
-//
-//                    confirmButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//
-//                        }
-//                    });
-//
+                    TextView dateTextView = (TextView) v.findViewById(R.id.date_textView);
+
+                    confirmButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
+                            Intent intent = CharteredTravelOrderActivity.makeIntent(CharteredTravelDetailActivity.this);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                        }
+                    });
+
                     closeButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -180,7 +178,18 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
                         }
                     });
 
+                    CalendarView calendarView = (CalendarView) v.findViewById(R.id.calendarView);
+                    calendarView.setOnCalendarSelectListener(new CalendarView.OnCalendarSelectListener() {
+                        @Override
+                        public void onCalendarOutOfRange(Calendar calendar) {
 
+                        }
+
+                        @Override
+                        public void onCalendarSelect(Calendar calendar, boolean isClick) {
+                            dateTextView.setText(calendar.getYear() + "年" + calendar.getMonth() + "月");
+                        }
+                    });
                 }
             })
                     .setLayoutRes(R.layout.layout_date_picker)
@@ -188,7 +197,48 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
         });
 
         groupTravelButton.setOnClickListener(view -> {
+            BottomDialog bottomDialog = BottomDialog.create(getSupportFragmentManager());
 
+            bottomDialog.setViewListener(new BottomDialog.ViewListener() {
+                @Override
+                public void bindView(View v) {
+                    Button confirmButton = (Button) v.findViewById(R.id.start_booking_button);
+                    ImageButton closeButton = (ImageButton) v.findViewById(R.id.cancel_button);
+                    TextView dateTextView = (TextView) v.findViewById(R.id.date_textView);
+
+                    confirmButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
+                            Intent intent = CharteredTravelOrderActivity.makeIntent(CharteredTravelDetailActivity.this);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                        }
+                    });
+
+                    closeButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            bottomDialog.dismiss();
+                        }
+                    });
+
+                    CalendarView calendarView = (CalendarView) v.findViewById(R.id.calendarView);
+                    calendarView.setOnCalendarSelectListener(new CalendarView.OnCalendarSelectListener() {
+                        @Override
+                        public void onCalendarOutOfRange(Calendar calendar) {
+
+                        }
+
+                        @Override
+                        public void onCalendarSelect(Calendar calendar, boolean isClick) {
+                            dateTextView.setText(calendar.getYear() + "年" + calendar.getMonth() + "月");
+                        }
+                    });
+                }
+            })
+                    .setLayoutRes(R.layout.layout_date_picker)
+                    .show();
         });
     }
 

@@ -29,13 +29,19 @@
             android:textColor="@android:color/black" />
     </RelativeLayout>
 
-    <!--<CalendarView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textColor="@android:color/black" />
 
-
-    <!--</CalendarView>-->
+    </RelativeLayout>
 
     <com.haibin.calendarview.CalendarLayout
         android:layout_width="match_parent"
@@ -68,6 +74,7 @@
     </com.haibin.calendarview.CalendarLayout>
 
     <Button
+        android:id="@+id/start_booking_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawable_red_theme_button"

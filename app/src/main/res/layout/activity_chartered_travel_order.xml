@@ -13,6 +13,7 @@
         android:layout_above="@+id/pay_relativeLayout">
 
         <LinearLayout
+            android:id="@+id/parent_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -113,6 +114,7 @@
             </android.support.constraint.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/choose_car_type_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -809,6 +811,7 @@
         android:layout_alignParentBottom="true">
 
         <Button
+            android:id="@+id/pay_button"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:background="@drawable/drawable_red_theme_button"
@@ -828,12 +831,13 @@
             android:textSize="20dp"/>
 
         <TextView
+            android:id="@+id/price_detail_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/price_textView"
             android:layout_marginStart="16dp"
-            android:text="价格明细" />
+            android:text="@string/detail_price" />
 
     </RelativeLayout>
 

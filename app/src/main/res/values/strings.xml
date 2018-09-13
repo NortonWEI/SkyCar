@@ -179,6 +179,10 @@
     <string name="discount_way">优惠方式</string>
     <string name="promotion_code">优惠码</string>
     <string name="fill_promotion_code">请输入优惠码</string>
+    <string name="detail_price">价格明细</string>
+    <string name="price_in_total">价格总计</string>
+    <string name="discount_price">优惠金额</string>
+    <string name="actual_price">实付金额</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

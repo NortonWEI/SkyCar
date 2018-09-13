@@ -166,6 +166,7 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             bottomDialog.dismiss();
                             Intent intent = CharteredTravelOrderActivity.makeIntent(CharteredTravelDetailActivity.this);
+                            intent.putExtra("parentActivity", "chartered");
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                         }
@@ -211,6 +212,7 @@ public class CharteredTravelDetailActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             bottomDialog.dismiss();
                             Intent intent = CharteredTravelOrderActivity.makeIntent(CharteredTravelDetailActivity.this);
+                            intent.putExtra("parentActivity", "group");
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                         }

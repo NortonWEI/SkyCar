@@ -156,7 +156,12 @@
             android:name=".CharteredTravelOrderActivity"
             android:label=""
             android:parentActivityName=".CharteredTravelDetailActivity"
-            android:theme="@style/AppTheme.RedActionBar"/>
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".InquireFlightActivity"
+            android:label=""
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.RedActionBar" />
     </application>
 
 </manifest>

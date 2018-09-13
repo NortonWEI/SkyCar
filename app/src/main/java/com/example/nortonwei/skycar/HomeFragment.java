@@ -83,6 +83,16 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
+
+        inquireFlightButton.setOnClickListener(view -> {
+            Intent intent = InquireFlightActivity.makeIntent(getContext());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        });
+
+        translateLicenceButton.setOnClickListener(view -> {
+
+        });
     }
 
     private void setUpCommentView(View fragmentView) {
@@ -95,15 +105,4 @@ public class HomeFragment extends Fragment {
             linearLayout.addView(v);
         }
     }
-
-//    private void setUpRecyclerView(View fragmentView) {
-//        RecyclerView recyclerView = (RecyclerView) fragmentView.findViewById(R.id.user_comment_recyclerView);
-//        List<UserComment> userCommentList = new ArrayList<>();
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-//        recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), LinearLayoutManager.VERTICAL));
-//
-//        UserCommentAdapter adapter = new UserCommentAdapter(this.getContext(), userCommentList);
-//        recyclerView.setAdapter(adapter);
-//    }
-
 }

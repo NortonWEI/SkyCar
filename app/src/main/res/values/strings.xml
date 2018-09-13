@@ -183,6 +183,11 @@
     <string name="price_in_total">价格总计</string>
     <string name="discount_price">优惠金额</string>
     <string name="actual_price">实付金额</string>
+    <string name="fill_flight_info">填写航班信息</string>
+    <string name="takeoff_time">起飞时间（当地）</string>
+    <string name="choose_takeoff_time">请选择起飞时间</string>
+    <string name="if_transit_hint">如有中转，请填写末航班的信息</string>
+    <string name="inquire_result">查询结果</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

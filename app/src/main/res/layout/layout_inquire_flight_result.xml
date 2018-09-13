@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/close" />
+
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/inquire_result"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/flight_number_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="3U601"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/flight_number_textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:text="10月28日 周四"
+            android:textColor="@color/carbon_grey_600"/>
+
+        <TextView
+            android:id="@+id/airline_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date_textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:text="四川航空 3U601"
+            android:textColor="@color/carbon_grey_600"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/carbon_grey_200" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/arrow_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/fly_to" />
+
+        <TextView
+            android:id="@+id/depart_time_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/arrow_imageView"
+            android:layout_below="@+id/depart_date_textView"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="12:30"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/arrive_time_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/arrow_imageView"
+            android:layout_below="@+id/arrive_date_textView"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="15:30"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/depart_airport_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/arrow_imageView"
+            android:layout_below="@+id/depart_time_textView"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="双流机场"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/arrive_airport_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/arrow_imageView"
+            android:layout_below="@+id/arrive_time_textView"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="墨尔本机场"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/depart_date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_toLeftOf="@+id/arrow_imageView"
+            android:text="10月28日"
+            android:textColor="@color/carbon_grey_600"/>
+
+        <TextView
+            android:id="@+id/arrive_date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/arrow_imageView"
+            android:layout_marginStart="16dp"
+            android:text="10月29日"
+            android:textColor="@color/carbon_grey_600"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

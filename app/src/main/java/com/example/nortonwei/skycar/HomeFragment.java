@@ -91,7 +91,9 @@ public class HomeFragment extends Fragment {
         });
 
         translateLicenceButton.setOnClickListener(view -> {
-
+            Intent intent = LicenseTranslationActivity.makeIntent(getContext());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

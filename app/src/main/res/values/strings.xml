@@ -188,6 +188,15 @@
     <string name="choose_takeoff_time">请选择起飞时间</string>
     <string name="if_transit_hint">如有中转，请填写末航班的信息</string>
     <string name="inquire_result">查询结果</string>
+    <string name="translate_license_hint">国际驾照翻译件，澳洲境内可包邮，其他翻译请联系客服。</string>
+    <string name="email">电子邮箱</string>
+    <string name="translation_send_email">驾照翻译电子版会发送到此邮箱</string>
+    <string name="australian_address">澳洲地址</string>
+    <string name="translation_send_address">驾照翻译会寄到此地址</string>
+    <string name="upload_pay">提交并支付</string>
+    <string name="upload_license_front">上传驾照正面</string>
+    <string name="upload_license_back">上传驾照反面</string>
+    <string name="click_upload">点击上传</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

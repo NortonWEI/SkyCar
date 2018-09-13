@@ -162,6 +162,11 @@
             android:label=""
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".LicenseTranslationActivity"
+            android:label=""
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.RedActionBar"/>
     </application>
 
 </manifest>

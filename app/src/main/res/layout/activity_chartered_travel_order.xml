@@ -141,8 +141,7 @@
                         android:layout_marginBottom="16dp"
                         android:layout_weight="8"
                         android:alignmentMode="alignBounds"
-                        android:columnCount="3"
-                        android:rowCount="2">
+                        android:columnCount="3">
 
                         <Button
                             android:layout_width="wrap_content"

@@ -1,19 +1,25 @@
 package com.example.nortonwei.skycar;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.nortonwei.skycar.Customization.PaymentPopup;
 
@@ -22,12 +28,16 @@ import java.io.FileNotFoundException;
 import me.shaohui.bottomdialog.BottomDialog;
 
 public class LicenseTranslationActivity extends AppCompatActivity {
-    private ImageButton uploadFrontButton;
-    private ImageButton uploadBackButton;
     private final static int FRONT_TAKE_REQUEST_CODE = 8001;
     private final static int FRONT_PICK_REQUEST_CODE = 8002;
     private final static int BACK_TAKE_REQUEST_CODE = 9001;
     private final static int BACK_PICK_REQUEST_CODE = 9002;
+    private static final int TAKE_PERMISSIONS_REQUESTS_CODE = 1234;
+    private static final int PICK_PERMISSIONS_REQUESTS_CODE = 1235;
+    private ImageButton uploadFrontButton;
+    private ImageButton uploadBackButton;
+    private boolean isTakePermitted = false;
+    private boolean isPickPermitted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +45,9 @@ public class LicenseTranslationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_license_translation);
 
         setUpActionBar();
-        setUpUIComponents();
+        if (isServiceOK()) {
+            setUpUIComponents();
+        }
     }
 
     @Override
@@ -93,19 +105,33 @@ public class LicenseTranslationActivity extends AppCompatActivity {
                     takePhotoButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            bottomDialog.dismiss();
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, FRONT_TAKE_REQUEST_CODE);
+                            if (ContextCompat.checkSelfPermission(LicenseTranslationActivity.this,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(LicenseTranslationActivity.this,
+                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        TAKE_PERMISSIONS_REQUESTS_CODE);
+                            } else {
+                                bottomDialog.dismiss();
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(intent, FRONT_TAKE_REQUEST_CODE);
+                            }
                         }
                     });
 
                     pickLibraryButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            bottomDialog.dismiss();
-                            Intent intent = new Intent(Intent.ACTION_PICK);
-                            intent.setType("image/*");
-                            startActivityForResult(intent, FRONT_PICK_REQUEST_CODE);
+                            if (ContextCompat.checkSelfPermission(LicenseTranslationActivity.this,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(LicenseTranslationActivity.this,
+                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        PICK_PERMISSIONS_REQUESTS_CODE);
+                            } else {
+                                bottomDialog.dismiss();
+                                Intent intent = new Intent(Intent.ACTION_PICK);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, FRONT_PICK_REQUEST_CODE);
+                            }
                         }
                     });
                 }
@@ -134,19 +160,33 @@ public class LicenseTranslationActivity extends AppCompatActivity {
                     takePhotoButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            bottomDialog.dismiss();
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, BACK_TAKE_REQUEST_CODE);
+                            if (ContextCompat.checkSelfPermission(LicenseTranslationActivity.this,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(LicenseTranslationActivity.this,
+                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        TAKE_PERMISSIONS_REQUESTS_CODE);
+                            } else {
+                                bottomDialog.dismiss();
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(intent, BACK_TAKE_REQUEST_CODE);
+                            }
                         }
                     });
 
                     pickLibraryButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            bottomDialog.dismiss();
-                            Intent intent = new Intent(Intent.ACTION_PICK);
-                            intent.setType("image/*");
-                            startActivityForResult(intent, BACK_PICK_REQUEST_CODE);
+                            if (ContextCompat.checkSelfPermission(LicenseTranslationActivity.this,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(LicenseTranslationActivity.this,
+                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        PICK_PERMISSIONS_REQUESTS_CODE);
+                            } else {
+                                bottomDialog.dismiss();
+                                Intent intent = new Intent(Intent.ACTION_PICK);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, BACK_PICK_REQUEST_CODE);
+                            }
                         }
                     });
                 }
@@ -206,6 +246,44 @@ public class LicenseTranslationActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    private boolean isServiceOK() {
+        PackageManager packageManager = getPackageManager();
+
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            return true;
+        } else {
+            Toast.makeText(this, "You device does not support camera", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == TAKE_PERMISSIONS_REQUESTS_CODE)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                isTakePermitted = true;
+            } else {
+                isTakePermitted = false;
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+        if (requestCode == PICK_PERMISSIONS_REQUESTS_CODE)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                isPickPermitted = true;
+            } else {
+                isPickPermitted = false;
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public static Intent makeIntent(Context context) {

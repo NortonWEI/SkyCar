@@ -169,13 +169,13 @@
                             android:text="@string/upload_license_front"
                             android:layout_marginBottom="16dp" />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/upload_front_button"
                             android:layout_width="150dp"
                             android:layout_height="120dp"
                             android:padding="32dp"
-                            android:text="@string/click_upload"
-                            android:textColor="@color/carbon_grey_400"
+                            android:src="@drawable/upload_image_button"
+                            android:scaleType="centerCrop"
                             android:layout_below="@id/license_front_textView"
                             android:drawableTop="@drawable/plus"
                             android:background="@drawable/drawable_dash_button"/>
@@ -195,14 +195,14 @@
                             android:text="@string/upload_license_back"
                             android:layout_marginBottom="16dp" />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/upload_back_button"
                             android:layout_width="150dp"
                             android:layout_height="120dp"
                             android:padding="32dp"
+                            android:src="@drawable/upload_image_button"
+                            android:scaleType="centerCrop"
                             android:layout_below="@+id/license_back_textView"
-                            android:text="@string/click_upload"
-                            android:textColor="@color/carbon_grey_400"
                             android:drawableTop="@drawable/plus"
                             android:background="@drawable/drawable_dash_button"/>
 

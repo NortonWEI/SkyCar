@@ -197,6 +197,10 @@
     <string name="upload_license_front">上传驾照正面</string>
     <string name="upload_license_back">上传驾照反面</string>
     <string name="click_upload">点击上传</string>
+    <string name="upload_license_hint">请提交驾驶证正面照片，确保文字清晰、无反光、无遮挡</string>
+    <string name="take_photo">上传照片</string>
+    <string name="pick_library">从相册选择</string>
+    <string name="upload_photo">上传照片</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -1,7 +1,9 @@
 package com.example.nortonwei.skycar;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -66,6 +69,13 @@ public class BusFragment extends Fragment {
         for (int i=0; i<10; i++) {
             LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = vi.inflate(R.layout.layout_bus_list, null);
+            Button joinButton = (Button) v.findViewById(R.id.join_button);
+
+            joinButton.setOnClickListener(view -> {
+                Intent intent = CompanionBusOrderDetailActivity.makeIntent(getContext());
+                startActivity(intent);  
+                getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+            });
 
             if (i == 9) {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

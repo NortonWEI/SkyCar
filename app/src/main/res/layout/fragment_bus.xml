@@ -55,12 +55,12 @@
 
                         <Spinner
                             android:id="@+id/bus_spinner"
-                            android:layout_width="20dp"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
 
                         <SearchView
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"

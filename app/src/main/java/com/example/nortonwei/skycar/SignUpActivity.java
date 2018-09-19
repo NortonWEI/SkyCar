@@ -12,24 +12,38 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
+import com.google.gson.JsonObject;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class SignUpActivity extends AppCompatActivity {
     int countryChoice = 0;
-    final String[] countryList = {"澳大利亚", "新西兰", "中国", "中国香港", "中国澳门", "中国台湾", "蒙古", "朝鲜", "韩国", "日本", "菲律宾", "越南", "老挝", "柬埔寨", "缅甸", "泰国", "马来西亚", "文莱", "新加坡", "印度尼西亚", "东帝汶"};
-    final String[] countryCodeList = {"+61", "+64", "+86", "+852", "+853", "+886", "+976", "+850", "+82", "+81", "+63", "+84", "+856", "+855", "+95", "+66", "+60", "+673", "+65", "+62", "+670"};
+    final String[] countryList = {"澳大利亚", "中国"};
+    final String[] countryCodeList = {"+61", "+86"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         setUpActionBar();
         setUpHyperLink();
-        setUpEditText();
-        setUpButton();
+        setUpUIComponents();
     }
 
     @Override
@@ -102,11 +115,13 @@ public class SignUpActivity extends AppCompatActivity {
         return spannableString;
     }
 
-    private void setUpEditText() {
+    private void setUpUIComponents() {
         EditText countryRegionEditText = (EditText) findViewById(R.id.country_region_editText);
         EditText phoneNumberEditText = (EditText) findViewById(R.id.sign_up_phone_editText);
         EditText countryRegionHintEditText = (EditText) findViewById(R.id.country_region_hint_editText);
         EditText countryCodeEditText = (EditText) findViewById(R.id.country_code_editText);
+
+        AVLoadingIndicatorView progressBar = (AVLoadingIndicatorView) findViewById(R.id.progressBar);
 
         countryRegionEditText.setCursorVisible(false);
         countryRegionEditText.setText(countryList[countryChoice]);
@@ -135,19 +150,57 @@ public class SignUpActivity extends AppCompatActivity {
             countrySelectPicker.show();
         });
 
-        phoneNumberEditText.setOnClickListener(view -> {
-
-        });
-    }
-
-    private void setUpButton() {
         Button nextButton = (Button) findViewById(R.id.next_auth_code_button);
 
         nextButton.setOnClickListener(view -> {
-            Intent intent = AuthCodeActivity.makeIntent(SignUpActivity.this);
-            startActivity(intent);
-            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+            if (phoneNumberEditText.getText().toString().isEmpty()) {
+                Toast.makeText(this, "请您填写电话号", Toast.LENGTH_SHORT).show();
+            } else {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                progressBar.setVisibility(View.VISIBLE);
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(HttpApiService.BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                HttpApiService service = retrofit.create(HttpApiService.class);
+
+                Call<JsonObject> responseBodyCall = service.createRegister(countryCodeEditText.getText().toString(), phoneNumberEditText.getText().toString(), 1);
+                responseBodyCall.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        int status = Integer.parseInt(response.body().get("status").toString());
+                        String msg = response.body().get("msg").toString().replaceAll("^\"|\"$", "");
+
+                        Log.d("aaa: ", "code: " + status);
+                        Log.d("aaa: ", msg);
+
+                        Toast.makeText(SignUpActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                        if (status == 1) {
+                            Intent intent = AuthCodeActivity.makeIntent(SignUpActivity.this);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(SignUpActivity.this, getString(R.string.network_error), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
     }
 
     public static Intent makeIntent(Context context) {

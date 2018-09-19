@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.example.nortonwei.skycar.R;
 
-public class UltraPagerAdapter extends PagerAdapter {
+public class CarTypeUltraPagerAdapter extends PagerAdapter {
     private boolean isMultiScr;
 
-    public UltraPagerAdapter(boolean isMultiScr) {
+    public CarTypeUltraPagerAdapter(boolean isMultiScr) {
         this.isMultiScr = isMultiScr;
     }
 

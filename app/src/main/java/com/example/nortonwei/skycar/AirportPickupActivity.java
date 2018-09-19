@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.example.nortonwei.skycar.Adapter.UltraPagerAdapter;
+import com.example.nortonwei.skycar.Adapter.CarTypeUltraPagerAdapter;
 import com.tmall.ultraviewpager.UltraViewPager;
 
 import java.util.ArrayList;
@@ -91,7 +90,7 @@ public class AirportPickupActivity extends AppCompatActivity {
 
         UltraViewPager ultraViewPager = (UltraViewPager) carTypeView.findViewById(R.id.car_type_ultraViewPager);
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-        PagerAdapter adapter = new UltraPagerAdapter(true);
+        PagerAdapter adapter = new CarTypeUltraPagerAdapter(true);
         ultraViewPager.setAdapter(adapter);
         ultraViewPager.setMultiScreen(0.5f);
         ultraViewPager.setItemRatio(1.0f);

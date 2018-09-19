@@ -3,25 +3,47 @@ package com.example.nortonwei.skycar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.example.nortonwei.skycar.Adapter.HomeAdUltraPageAdapter;
+import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.tmall.ultraviewpager.UltraViewPager;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+    ArrayList<String> adImageUrlList = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -33,6 +55,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        adImageUrlList.clear();
 
         HomeActivity.setUpActionBar((AppCompatActivity)getActivity(), getString(R.string.skycar));
         setUpButton(fragmentView);
@@ -94,6 +118,66 @@ public class HomeFragment extends Fragment {
             Intent intent = LicenseTranslationActivity.makeIntent(getContext());
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        });
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HttpApiService.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        HttpApiService service = retrofit.create(HttpApiService.class);
+
+        Call<JsonObject> responseBodyCall = service.getIndexData();
+        responseBodyCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                int status = Integer.parseInt(response.body().get("status").toString());
+
+                if (status == HttpApiService.STATUS_OK) {
+                    JsonObject data = (JsonObject) response.body().get("data");
+                    JsonArray adList = data.get("adsList").getAsJsonArray();
+
+                    for (JsonElement element: adList) {
+                       JsonObject ad = element.getAsJsonObject();
+                       adImageUrlList.add(ad.get("img").getAsString());
+                    }
+
+                    UltraViewPager ultraViewPager = (UltraViewPager) fragmentView.findViewById(R.id.ad_ultraViewPager);
+                    ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+                    PagerAdapter adapter = new HomeAdUltraPageAdapter(adImageUrlList, getContext());
+                    ultraViewPager.setAdapter(adapter);
+                    ultraViewPager.setAutoMeasureHeight(true);
+                    ultraViewPager.initIndicator();
+                    ultraViewPager.getIndicator()
+                            .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+                            .setFocusColor(getResources().getColor(R.color.themeRed))
+                            .setNormalColor(getResources().getColor(R.color.white))
+                            .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
+                    ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+                    ultraViewPager.getIndicator().build();
+
+                    ultraViewPager.setInfiniteLoop(true);
+                    ultraViewPager.setAutoScroll(2000);
+
+                } else if (status == HttpApiService.STATUS_LOGOUT) {
+                    SharedPreferences share = getContext().getSharedPreferences("Login",
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = share.edit();
+                    editor.putBoolean("isLogin", false);
+                    editor.commit();
+
+                    Intent intent = LaunchActivity.makeIntent(getContext());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    getActivity().finish();
+                } else {
+                    Toast.makeText(getContext(), "服务器繁忙，加载主页内容失败！", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(getContext(), "网络错误，加载主页内容失败！", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

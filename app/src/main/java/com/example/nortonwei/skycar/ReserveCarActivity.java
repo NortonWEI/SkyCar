@@ -29,8 +29,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.crowdfire.cfalertdialog.CFAlertDialog;
-import com.example.nortonwei.skycar.Adapter.UltraPagerAdapter;
+import com.example.nortonwei.skycar.Adapter.CarTypeUltraPagerAdapter;
 import com.example.nortonwei.skycar.Customization.PaymentPopup;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -169,7 +168,7 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
 
             UltraViewPager ultraViewPager = (UltraViewPager) continueReserveView.findViewById(R.id.car_type_ultraViewPager);
             ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-            PagerAdapter adapter = new UltraPagerAdapter(true);
+            PagerAdapter adapter = new CarTypeUltraPagerAdapter(true);
             ultraViewPager.setAdapter(adapter);
             ultraViewPager.setMultiScreen(0.5f);
             ultraViewPager.setItemRatio(1.0f);

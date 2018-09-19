@@ -82,4 +82,13 @@ dependencies {
 
     //calendar view
     compile 'com.haibin:calendarview:3.4.4'
+
+    //RESTful API
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+
+    //gson converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    //progress bar
+    compile 'com.wang.avi:library:2.1.3'
 }

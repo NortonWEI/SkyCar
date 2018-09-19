@@ -34,17 +34,13 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView2"
+                    <com.tmall.ultraviewpager.UltraViewPager
+                        android:id="@+id/ad_ultraViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:contentDescription="@string/skycar"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/main_banner"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_height="160dp">
+
+
+                    </com.tmall.ultraviewpager.UltraViewPager>
 
                     <LinearLayout
                         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,187 +11,200 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
-        android:id="@+id/home_scrollView"
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/refresh_view_frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:ptr_duration_to_close="200"
+        app:ptr_duration_to_close_header="1000"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_resistance="1.7">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/home_scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/top_cardView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_gravity="top"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
+                    android:id="@+id/top_cardView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.tmall.ultraviewpager.UltraViewPager
-                        android:id="@+id/ad_ultraViewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp">
-
-
-                    </com.tmall.ultraviewpager.UltraViewPager>
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/ariport_pick_up_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/airportshuttle"
-                            android:text="@string/airport_pick_up" />
+                        <com.tmall.ultraviewpager.UltraViewPager
+                            android:id="@+id/ad_ultraViewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp">
 
-                        <Button
-                            android:id="@+id/reserve_car_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/reservations"
-                            android:text="@string/reserve_car" />
 
-                        <Button
-                            android:id="@+id/companion_bus_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/companionbus"
-                            android:text="@string/companion_bus" />
+                        </com.tmall.ultraviewpager.UltraViewPager>
 
-                        <Button
-                            android:id="@+id/chartered_travel_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/charteredtravel"
-                            android:text="@string/chartered_travel" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            >
+
+                            <Button
+                                android:id="@+id/ariport_pick_up_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@drawable/airportshuttle"
+                                android:text="@string/airport_pick_up" />
+
+                            <Button
+                                android:id="@+id/reserve_car_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@drawable/reservations"
+                                android:text="@string/reserve_car" />
+
+                            <Button
+                                android:id="@+id/companion_bus_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@drawable/companionbus"
+                                android:text="@string/companion_bus" />
+
+                            <Button
+                                android:id="@+id/chartered_travel_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@drawable/charteredtravel"
+                                android:text="@string/chartered_travel" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/middle_cardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-
-                    <Button
-                        android:id="@+id/inquire_flight_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginEnd="60dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/inquiretheflight"
-                        android:text="@string/inquire_flight" />
-
-                    <View
-                        android:id="@+id/divider"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="?android:attr/listDivider" />
-
-                    <Button
-                        android:id="@+id/translate_licence_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginStart="60dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/translate"
-                        android:text="@string/translate_licence" />
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/bottom_cardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
-
-                <LinearLayout
-                    android:id="@+id/user_comment_linear"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/middle_cardView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp">
 
-                    <TextView
-                        android:id="@+id/user_real_time_comment_textView"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <Button
+                            android:id="@+id/inquire_flight_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/inquiretheflight"
+                            android:text="@string/inquire_flight" />
+
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="?android:attr/listDivider" />
+
+                        <Button
+                            android:id="@+id/translate_licence_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/translate"
+                            android:text="@string/translate_licence" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/bottom_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/user_comment_linear"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingStart="20dp"
-                        android:paddingTop="10dp"
-                        android:text="@string/user_real_time_comment"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <View
-                        android:id="@+id/divider2"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
-                        android:background="?android:attr/listDivider" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/user_real_time_comment_textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/user_real_time_comment"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-    </ScrollView>
+                        <View
+                            android:id="@+id/divider2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginStart="20dp"
+                            android:background="?android:attr/listDivider" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
 
+        </ScrollView>
 
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 </LinearLayout>
+

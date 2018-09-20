@@ -26,4 +26,8 @@ public interface HttpApiService {
     //index data
     @GET("/index")
     Call<JsonObject> getIndexData();
+
+    //user comment
+    @GET("index/comment")
+    Call<JsonObject> getUserComment(@Query("token") String token);
 }

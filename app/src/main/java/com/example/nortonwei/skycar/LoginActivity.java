@@ -97,8 +97,8 @@ public class LoginActivity extends AppCompatActivity {
                 responseBodyCall.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        int status = Integer.parseInt(response.body().get("status").toString());
-                        String msg = response.body().get("msg").toString().replaceAll("^\"|\"$", "");
+                        int status = response.body().get("status").getAsInt();
+                        String msg = response.body().get("msg").getAsString();
 
                         if (status == HttpApiService.STATUS_OK) {
                             JsonObject data = response.body().get("data").getAsJsonObject();

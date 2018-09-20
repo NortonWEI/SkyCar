@@ -41,6 +41,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/input_your_phone"
+        android:theme="@style/EditTextTheme"
         android:inputType="phone"
         android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +58,7 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="none"
+        android:theme="@style/EditTextTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/condition_term_textView" />
@@ -90,6 +92,7 @@
         android:textAlignment="viewEnd"
         android:textColor="@android:color/darker_gray"
         android:textIsSelectable="false"
+        android:theme="@style/EditTextTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sign_up_phone_editText" />
 
@@ -106,6 +109,7 @@
         android:text="@string/country_region"
         android:textAlignment="viewEnd"
         android:textColor="@android:color/darker_gray"
+        android:theme="@style/EditTextTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/country_region_editText" />
 
@@ -123,18 +127,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:elevation="20dp">
 
-        <com.wang.avi.AVLoadingIndicatorView
+        <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="BallPulseIndicator"
             android:layout_centerInParent="true"
             android:visibility="gone"
-            app:indicatorColor="@color/themeRed"
-            />
-
+            android:indeterminateTint="@color/themeRed" />
 
     </RelativeLayout>
 

@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,11 +29,11 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,9 +42,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends AppCompatActivity {
-    int countryChoice = 0;
-    final String[] countryList = {"澳大利亚", "中国"};
-    final String[] countryCodeList = {"+61", "+86"};
+    private int countryChoice = 0;
+    private ArrayList<String> countryList = new ArrayList<>();
+    private ArrayList<String> countryCodeList = new ArrayList<>();
+
+    private ProgressBar progressBar;
+    EditText countryRegionEditText;
+    EditText phoneNumberEditText;
+    EditText countryRegionHintEditText;
+    EditText countryCodeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,40 +122,93 @@ public class SignUpActivity extends AppCompatActivity {
         return spannableString;
     }
 
-    private void setUpUIComponents() {
-        EditText countryRegionEditText = (EditText) findViewById(R.id.country_region_editText);
-        EditText phoneNumberEditText = (EditText) findViewById(R.id.sign_up_phone_editText);
-        EditText countryRegionHintEditText = (EditText) findViewById(R.id.country_region_hint_editText);
-        EditText countryCodeEditText = (EditText) findViewById(R.id.country_code_editText);
+    private void setUpCountryList() {
+        countryList.clear();
+        countryCodeList.clear();
 
-        AVLoadingIndicatorView progressBar = (AVLoadingIndicatorView) findViewById(R.id.progressBar);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBar.setVisibility(View.VISIBLE);
 
-        countryRegionEditText.setCursorVisible(false);
-        countryRegionEditText.setText(countryList[countryChoice]);
-        countryRegionHintEditText.setText(getString(R.string.country_region) + "  ");
-        countryCodeEditText.setText(countryCodeList[countryChoice] + "  ");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HttpApiService.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        HttpApiService service = retrofit.create(HttpApiService.class);
 
-        countryRegionEditText.setOnClickListener(view -> {
-            ArrayList countryArrayList = new ArrayList(Arrays.asList(countryList));
+        Call<JsonObject> responseBodyCall = service.getCountryList();
+        responseBodyCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                int status = response.body().get("status").getAsInt();
+                String msg = response.body().get("msg").getAsString();
 
-            OptionsPickerView countrySelectPicker = new OptionsPickerBuilder(SignUpActivity.this, new OnOptionsSelectListener() {
-                @Override
-                public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
-                    countryChoice = options1;
-                    countryRegionEditText.setText(countryList[options1]);
-                    countryCodeEditText.setText(countryCodeList[options1] + "  ");
+                if (status == HttpApiService.STATUS_OK) {
+                    JsonArray data = response.body().get("data").getAsJsonArray();
+
+                    for (JsonElement element: data) {
+                        countryList.add(element.getAsJsonObject().get("name").getAsString());
+                        countryCodeList.add(element.getAsJsonObject().get("val").getAsString());
+                    }
+
+                    if (!countryList.isEmpty() && !countryCodeList.isEmpty()) {
+                        countryRegionEditText.setText(countryList.get(countryChoice));
+                        countryCodeEditText.setText(countryCodeList.get(countryChoice) + "  ");
+
+                        countryRegionEditText.setOnClickListener(view -> {
+                            OptionsPickerView countrySelectPicker = new OptionsPickerBuilder(SignUpActivity.this, new OnOptionsSelectListener() {
+                                @Override
+                                public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+                                    countryChoice = options1;
+                                    countryRegionEditText.setText(countryList.get(options1));
+                                    countryCodeEditText.setText(countryCodeList.get(options1) + "  ");
+                                }
+                            })
+                                    .setCancelText(getString(R.string.cancel))
+                                    .setSubmitText(getString(R.string.confirm))
+                                    .setCancelColor(getResources().getColor(R.color.themeRed))
+                                    .setSubmitColor(getResources().getColor(R.color.themeRed))
+                                    .setTitleText(getString(R.string.choose_number_region))
+                                    .setSelectOptions(countryChoice)
+                                    .build();
+                            countrySelectPicker.setPicker(countryList);
+                            countrySelectPicker.show();
+                        });
+                    }
+                } else {
+                    Toast.makeText(SignUpActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
-            })
-                    .setCancelText(getString(R.string.cancel))
-                    .setSubmitText(getString(R.string.confirm))
-                    .setCancelColor(getResources().getColor(R.color.themeRed))
-                    .setSubmitColor(getResources().getColor(R.color.themeRed))
-                    .setTitleText(getString(R.string.choose_number_region))
-                    .setSelectOptions(countryChoice)
-                    .build();
-            countrySelectPicker.setPicker(countryArrayList);
-            countrySelectPicker.show();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(SignUpActivity.this, getString(R.string.network_error), Toast.LENGTH_SHORT).show();
+            }
         });
+    }
+
+    private void setUpUIComponents() {
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        countryRegionEditText = (EditText) findViewById(R.id.country_region_editText);
+        phoneNumberEditText = (EditText) findViewById(R.id.sign_up_phone_editText);
+        countryRegionHintEditText = (EditText) findViewById(R.id.country_region_hint_editText);
+        countryCodeEditText = (EditText) findViewById(R.id.country_code_editText);
+
+        countryRegionHintEditText.setText(getString(R.string.country_region) + "  ");
+        phoneNumberEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
+
+
+        setUpCountryList();
 
         Button nextButton = (Button) findViewById(R.id.next_auth_code_button);
 
@@ -165,23 +225,22 @@ public class SignUpActivity extends AppCompatActivity {
                         .build();
                 HttpApiService service = retrofit.create(HttpApiService.class);
 
-                Call<JsonObject> responseBodyCall = service.createRegister(countryCodeEditText.getText().toString(), phoneNumberEditText.getText().toString(), 1);
+                Call<JsonObject> responseBodyCall = service.sendVerificationCode(countryCodeEditText.getText().toString().trim(), phoneNumberEditText.getText().toString(), 1);
                 responseBodyCall.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        int status = Integer.parseInt(response.body().get("status").toString());
-                        String msg = response.body().get("msg").toString().replaceAll("^\"|\"$", "");
+                        int status = response.body().get("status").getAsInt();
+                        String msg = response.body().get("msg").getAsString();
 
-                        Log.d("aaa: ", "code: " + status);
-                        Log.d("aaa: ", msg);
-
-                        Toast.makeText(SignUpActivity.this, msg, Toast.LENGTH_SHORT).show();
-
-                        if (status == 1) {
+                        if (status == HttpApiService.STATUS_OK) {
                             Intent intent = AuthCodeActivity.makeIntent(SignUpActivity.this);
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                        } else {
+                            Toast.makeText(SignUpActivity.this, msg, Toast.LENGTH_SHORT).show();
                         }
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        progressBar.setVisibility(View.GONE);
                     }
 
                     @Override

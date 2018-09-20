@@ -1,6 +1,7 @@
 package com.example.nortonwei.skycar.Adapter;
 
 import android.content.Context;
+import android.databinding.adapters.ToolbarBindingAdapter;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nortonwei.skycar.R;
@@ -40,6 +42,10 @@ public class HomeAdUltraPageAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) relativeLayout.findViewById(R.id.imageView);
         Glide.with(context).load(adImageUrlList.get(position)).into(imageView);
         container.addView(relativeLayout);
+
+        relativeLayout.setOnClickListener(view -> {
+            Toast.makeText(context, "Clicked: " + position, Toast.LENGTH_SHORT).show();
+        });
 
         return relativeLayout;
     }

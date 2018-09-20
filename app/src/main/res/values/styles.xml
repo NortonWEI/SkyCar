@@ -37,4 +37,9 @@
         <item name="colorControlActivated">@color/themeRed</item>
     </style>
 
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">@color/themeRed</item>
+        <item name="colorControlHighlight">@color/themeRed</item>
+    </style>
+
 </resources>

@@ -15,11 +15,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
 import com.google.gson.JsonObject;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,13 +74,14 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = (Button) findViewById(R.id.login_to_home_button);
         EditText phoneEditText = (EditText) findViewById(R.id.login_phone_editText);
         EditText passwordEditText = (EditText) findViewById(R.id.login_password_editText);
-        AVLoadingIndicatorView progressBar = (AVLoadingIndicatorView) findViewById(R.id.progressBar);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         wechatLoginButton.setOnClickListener(view -> {
 
         });
 
         loginButton.setOnClickListener(view -> {
+
             if (phoneEditText.getText().toString().isEmpty() || passwordEditText.getText().toString().isEmpty()) {
                 Toast.makeText(this, "请您填写电话号及密码", Toast.LENGTH_SHORT).show();
             } else {

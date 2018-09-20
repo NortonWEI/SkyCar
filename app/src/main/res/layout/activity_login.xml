@@ -67,6 +67,7 @@
         android:ems="10"
         android:hint="@string/input_password"
         android:inputType="textPassword"
+        android:theme="@style/EditTextTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +82,7 @@
         android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="@string/input_phone"
+        android:theme="@style/EditTextTheme"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -139,18 +141,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:elevation="20dp">
 
-        <com.wang.avi.AVLoadingIndicatorView
+        <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="BallPulseIndicator"
             android:layout_centerInParent="true"
             android:visibility="gone"
-            app:indicatorColor="@color/themeRed"
-            />
-
+            android:indeterminateTint="@color/themeRed"/>
 
     </RelativeLayout>
 

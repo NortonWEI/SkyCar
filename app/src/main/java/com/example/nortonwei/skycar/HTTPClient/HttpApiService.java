@@ -19,9 +19,13 @@ public interface HttpApiService {
     @POST("/account/login-phone")
     Call<JsonObject> createLogin(@Query("mobile") String mobile, @Query("password") String password);
 
-    //send phone
-    @POST("/user/register-phone")
-    Call<JsonObject> createRegister(@Query("areaCode") String areaCode, @Query("mobile") String mobile, @Query("type") int type);
+    //get country list
+    @GET("/index/country")
+    Call<JsonObject> getCountryList();
+
+    //send verification code
+    @POST("/system/send-code")
+    Call<JsonObject> sendVerificationCode(@Query("areaCode") String areaCode, @Query("mobile") String mobile, @Query("type") int type);
 
     //index data
     @GET("/index")

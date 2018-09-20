@@ -16,9 +16,9 @@ public class LaunchActivity extends AppCompatActivity {
         SharedPreferences share = getSharedPreferences("Login",
                 Context.MODE_PRIVATE);
 
-//        SharedPreferences.Editor editor = share.edit();
-//        editor.putBoolean("isLogin", false);
-//        editor.commit();
+        SharedPreferences.Editor editor = share.edit();
+        editor.putBoolean("isLogin", false);
+        editor.commit();
 
         if (share.getBoolean("isLogin", false)) {
             Intent intent = HomeActivity.makeIntent(LaunchActivity.this);

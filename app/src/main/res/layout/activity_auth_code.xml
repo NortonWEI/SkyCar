@@ -23,18 +23,18 @@
     <TextView
         android:id="@+id/send_number_textView"
         android:layout_width="0dp"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
-        android:text="@string/auth_code_sent_foo"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auth_code_textView" />
 
     <EditText
-        android:id="@+id/nickname_editText"
+        android:id="@+id/auth_code_editText"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginEnd="48dp"
@@ -43,6 +43,7 @@
         android:ems="10"
         android:hint="@string/auth_code_hint"
         android:inputType="number"
+        android:theme="@style/EditTextTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +76,21 @@
         android:text="@string/resend"
         android:textColor="@color/themeRed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/auth_code_editText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="20dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:indeterminateTint="@color/themeRed" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

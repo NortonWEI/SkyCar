@@ -234,6 +234,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                         if (status == HttpApiService.STATUS_OK) {
                             Intent intent = AuthCodeActivity.makeIntent(SignUpActivity.this);
+                            intent.putExtra("countryCode", countryCodeEditText.getText().toString().trim());
+                            intent.putExtra("mobile", phoneNumberEditText.getText().toString());
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                         } else {

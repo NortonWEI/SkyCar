@@ -27,6 +27,10 @@ public interface HttpApiService {
     @POST("/system/send-code")
     Call<JsonObject> sendVerificationCode(@Query("areaCode") String areaCode, @Query("mobile") String mobile, @Query("type") int type);
 
+    //verify code
+    @POST("/account/register")
+    Call<JsonObject> verifyCode(@Query("areaCode") String areaCode, @Query("mobile") String mobile, @Query("code") String code);
+
     //index data
     @GET("/index")
     Call<JsonObject> getIndexData();

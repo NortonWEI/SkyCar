@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -30,6 +31,14 @@ public interface HttpApiService {
     //verify code
     @POST("/account/register")
     Call<JsonObject> verifyCode(@Query("areaCode") String areaCode, @Query("mobile") String mobile, @Query("code") String code);
+
+    //set profile
+    @POST("/user/register-info")
+    Call<JsonObject> setProfile(@Header("token") String token, @Query("nickname") String nickname, @Query("sex") int sex, @Query("email") String email);
+
+    //set password
+    @POST("/user/register-pwd")
+    Call<JsonObject> setPassword(@Header("token") String token, @Query("password") String password, @Query("password_confirmation") String confirmPassword);
 
     //index data
     @GET("/index")

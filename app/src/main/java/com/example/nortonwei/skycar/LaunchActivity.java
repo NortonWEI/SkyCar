@@ -16,6 +16,7 @@ public class LaunchActivity extends AppCompatActivity {
         SharedPreferences share = getSharedPreferences("Login",
                 Context.MODE_PRIVATE);
 
+        //disable auto login:
         SharedPreferences.Editor editor = share.edit();
         editor.putBoolean("isLogin", false);
         editor.commit();

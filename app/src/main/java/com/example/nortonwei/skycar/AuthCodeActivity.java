@@ -2,6 +2,7 @@ package com.example.nortonwei.skycar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -103,6 +105,16 @@ public class AuthCodeActivity extends AppCompatActivity {
                         String msg = response.body().get("msg").getAsString();
 
                         if (status == HttpApiService.STATUS_OK) {
+                            JsonObject data = response.body().get("data").getAsJsonObject();
+
+                            SharedPreferences share = getSharedPreferences("Login",
+                                    Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = share.edit();
+                            editor.putBoolean("isLogin", false);
+                            editor.putString("mobile", getIntent().getStringExtra("mobile"));
+                            editor.putString("token", data.get("token").getAsString());
+                            editor.commit();
+
                             Intent intent = ProfileSetActivity.makeIntent(AuthCodeActivity.this);
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);

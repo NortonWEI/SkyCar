@@ -54,7 +54,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends Fragment {
     private ArrayList<String> adImageUrlList = new ArrayList<>();
     private ArrayList<UserComment> userCommentList = new ArrayList<>();
-    private int commentNum = 0;
     private boolean isAdFinishLoad = false;
     private boolean isCommentFinishLoad = false;
 
@@ -232,7 +231,7 @@ public class HomeFragment extends Fragment {
                 int status = response.body().get("status").getAsInt();
 
                 if (status == HttpApiService.STATUS_OK) {
-                    linearLayout.removeViews(2, commentNum);
+                    linearLayout.removeViews(2, linearLayout.getChildCount()-2);
 
                     JsonObject data = response.body().get("data").getAsJsonObject();
                     JsonArray commentList = data.get("commentList").getAsJsonArray();
@@ -247,8 +246,6 @@ public class HomeFragment extends Fragment {
                                 comment.get("create_time").getAsString());
                         userCommentList.add(commentModel);
                     }
-
-                    commentNum = userCommentList.size();
 
                     for (int i=0; i<userCommentList.size(); i++) {
                         LayoutInflater vi = (LayoutInflater) fragmentView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

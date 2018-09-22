@@ -7,18 +7,31 @@ import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface HttpApiService {
     String BASE_URL = "http://mobile_api.dddyp.cn";
+    String WECHAT_INFO_URL = "https://api.weixin.qq.com";
     int STATUS_OK = 1;
     int STATUS_LOGOUT = -90;
 
     //user login
     @POST("/account/login-phone")
     Call<JsonObject> createLogin(@Query("mobile") String mobile, @Query("password") String password);
+
+    //wechat login
+    @POST("/account/bind")
+    Call<JsonObject> createWechatLogin(@Query("unionId") String unionId, @Query("nickname") String nickname, @Query("headimgurl") String headImg, @Query("sex") int sex);
+
+    //obtain wechat access token
+    @GET
+    Call<JsonObject> obtainWechatAccessToken(@Url String url);
+
+    //obtain wechat user info
+    @GET
+    Call<JsonObject> obtainWechatUserInfo(@Url String url);
 
     //get country list
     @GET("/index/country")

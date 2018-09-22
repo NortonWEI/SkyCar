@@ -8,6 +8,10 @@ import android.content.SharedPreferences;
 import com.example.nortonwei.skycar.LaunchActivity;
 
 public class LoginUtils {
+    public final static String WECHAT_APP_ID = "wxe1ce36a27b6dfb4f";
+    public final static String WECHAT_APP_SECRET = "52c53a7be9e8d1d7b93fbf8a9f682afc";
+    public final static String WECHAT_REQ_STATE = "skycar_android_wechat_login";
+
     private LoginUtils() {
     }
 

@@ -217,4 +217,5 @@
 
 
     <string name="network_error">网络错误，请稍后再试。</string>
+    <string name="logining">登录中……</string>
 </resources>

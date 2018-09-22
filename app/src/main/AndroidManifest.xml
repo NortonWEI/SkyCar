@@ -6,7 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +31,8 @@
 
         <activity
             android:name=".LaunchActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,136 +41,174 @@
         </activity>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".LaunchActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
             android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".LaunchActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
             android:name=".AuthCodeActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".SignUpActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
             android:name=".ProfileSetActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".AuthCodeActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
             android:name=".PasswordSetActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".ProfileSetActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
             android:name=".HomeActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".AirportPickupActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".ConfirmTripActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".AirportPickupActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".FrequentPassengerActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".ConfirmTripActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".AddFrequentPassengerActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".FrequentPassengerActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".OfflinePaymentSuccessActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".OnlinePaymentSuccessActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".ReserveCarActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".CompanionBusActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".FrequentAddressActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CompanionBusActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".AddFrequentAddressActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".FrequentAddressActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".CompanionBusResultActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CompanionBusActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".CompanionBusOrderDetailActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CompanionBusResultActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".JoinCompanionBusActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CompanionBusOrderDetailActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".ConfirmCompanionBusActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".JoinCompanionBusActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".CharteredTravelActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".WishListActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CharteredTravelActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".CharteredTravelListActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CharteredTravelActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".CharteredTravelDetailActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CharteredTravelListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CharteredTravelOrderActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".CharteredTravelDetailActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".InquireFlightActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.RedActionBar" />
         <activity
             android:name=".LicenseTranslationActivity"
+            android:screenOrientation="portrait"
             android:label=""
             android:parentActivityName=".HomeActivity"
-            android:theme="@style/AppTheme.RedActionBar"/>
+            android:theme="@style/AppTheme.RedActionBar" />
+        <activity
+            android:name=".WechatLoginTransitionActivity"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

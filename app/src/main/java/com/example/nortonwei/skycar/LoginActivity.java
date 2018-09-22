@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -18,8 +19,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.nortonwei.skycar.Customization.LoginUtils;
 import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
+import com.example.nortonwei.skycar.wxapi.WXEntryActivity;
 import com.google.gson.JsonObject;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,14 +34,25 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
+    private IWXAPI wxApi;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        registerToWechat();
         setUpActionBar();
         setUIComponents();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -61,6 +78,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void registerToWechat() {
+        wxApi = WXAPIFactory.createWXAPI(this, LoginUtils.WECHAT_APP_ID, true);
+        wxApi.registerApp(LoginUtils.WECHAT_APP_ID);
+    }
+
     private void setUpActionBar() {
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(R.color.carbon_black), PorterDuff.Mode.SRC_ATOP);
@@ -74,10 +96,17 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = (Button) findViewById(R.id.login_to_home_button);
         EditText phoneEditText = (EditText) findViewById(R.id.login_phone_editText);
         EditText passwordEditText = (EditText) findViewById(R.id.login_password_editText);
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         wechatLoginButton.setOnClickListener(view -> {
-
+            if (!wxApi.isWXAppInstalled()) {
+                Toast.makeText(this, "您还未安装微信客户端", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            final SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = LoginUtils.WECHAT_REQ_STATE;
+            progressBar.setVisibility(View.VISIBLE);
+            wxApi.sendReq(req);
         });
 
         loginButton.setOnClickListener(view -> {

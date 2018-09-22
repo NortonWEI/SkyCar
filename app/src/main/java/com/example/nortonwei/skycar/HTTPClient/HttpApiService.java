@@ -4,6 +4,9 @@ import com.example.nortonwei.skycar.HTTPClient.Login.LoginRequest;
 import com.example.nortonwei.skycar.HTTPClient.Login.LoginResponse;
 import com.google.gson.JsonObject;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -16,6 +19,12 @@ public interface HttpApiService {
     String WECHAT_INFO_URL = "https://api.weixin.qq.com";
     int STATUS_OK = 1;
     int STATUS_LOGOUT = -90;
+
+    OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .writeTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .build();
 
     //user login
     @POST("/account/login-phone")

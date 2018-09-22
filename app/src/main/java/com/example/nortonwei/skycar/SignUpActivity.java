@@ -28,13 +28,16 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.example.nortonwei.skycar.Customization.LoginUtils;
 import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -131,6 +134,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HttpApiService.BASE_URL)
+                .client(HttpApiService.client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         HttpApiService service = retrofit.create(HttpApiService.class);

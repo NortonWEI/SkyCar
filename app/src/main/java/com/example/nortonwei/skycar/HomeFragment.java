@@ -53,6 +53,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HomeFragment extends Fragment {
     private ArrayList<String> adImageUrlList = new ArrayList<>();
+    private ArrayList<String> adClickUrlList = new ArrayList<>();
     private ArrayList<UserComment> userCommentList = new ArrayList<>();
     private boolean isAdFinishLoad = false;
     private boolean isCommentFinishLoad = false;
@@ -154,6 +155,7 @@ public class HomeFragment extends Fragment {
     private void setAdData(View fragmentView) {
         isAdFinishLoad = false;
         adImageUrlList.clear();
+        adClickUrlList.clear();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HttpApiService.BASE_URL)
@@ -174,11 +176,12 @@ public class HomeFragment extends Fragment {
                     for (JsonElement element: adList) {
                         JsonObject ad = element.getAsJsonObject();
                         adImageUrlList.add(ad.get("img").getAsString());
+                        adClickUrlList.add(ad.get("url").getAsString());
                     }
 
                     UltraViewPager ultraViewPager = (UltraViewPager) fragmentView.findViewById(R.id.ad_ultraViewPager);
                     ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-                    PagerAdapter adapter = new HomeAdUltraPageAdapter(adImageUrlList, getContext());
+                    PagerAdapter adapter = new HomeAdUltraPageAdapter(adImageUrlList, adClickUrlList, getContext());
                     ultraViewPager.setAdapter(adapter);
                     ultraViewPager.setAutoMeasureHeight(true);
                     ultraViewPager.initIndicator();

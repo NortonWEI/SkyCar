@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/backward"
+        android:title="后退"
+        android:icon="@drawable/drawable_back_arrow"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/forward"
+        android:title="前进"
+        android:icon="@drawable/drawable_forward_arrow"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/refresh"
+        android:title="刷新"
+        android:icon="@drawable/drawable_webpage_refresh"
+        app:showAsAction="ifRoom"/>
+</menu>

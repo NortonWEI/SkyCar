@@ -1,27 +1,34 @@
 package com.example.nortonwei.skycar.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.adapters.ToolbarBindingAdapter;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.nortonwei.skycar.BrowserActivity;
+import com.example.nortonwei.skycar.CharteredTravelActivity;
 import com.example.nortonwei.skycar.R;
 
 import java.util.ArrayList;
 
 public class HomeAdUltraPageAdapter extends PagerAdapter {
     ArrayList<String> adImageUrlList = new ArrayList<>();
+    ArrayList<String> adClickUrlList = new ArrayList<>();
     Context context;
 
-    public HomeAdUltraPageAdapter(ArrayList<String> adImageUrlList, Context context) {
+    public HomeAdUltraPageAdapter(ArrayList<String> adImageUrlList, ArrayList<String> adClickUrlList, Context context) {
         this.adImageUrlList = adImageUrlList;
+        this.adClickUrlList = adClickUrlList;
         this.context = context;
     }
 
@@ -44,7 +51,13 @@ public class HomeAdUltraPageAdapter extends PagerAdapter {
         container.addView(relativeLayout);
 
         relativeLayout.setOnClickListener(view -> {
-            Toast.makeText(context, "Clicked: " + position, Toast.LENGTH_SHORT).show();
+            if (!adClickUrlList.get(position).isEmpty()) {
+                Intent intent = BrowserActivity.makeIntent(context);
+                intent.putExtra("url", adClickUrlList.get(position));
+                context.startActivity(intent);
+                Activity activity = (Activity) context;
+                activity.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+            }
         });
 
         return relativeLayout;

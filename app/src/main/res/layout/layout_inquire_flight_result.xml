@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="3U601"
+            android:text=""
             android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
@@ -62,7 +62,7 @@
             android:layout_below="@+id/date_textView"
             android:layout_alignParentStart="true"
             android:layout_marginTop="8dp"
-            android:text="四川航空 3U601"
+            android:text=""
             android:textColor="@color/carbon_grey_600"/>
     </RelativeLayout>
 
@@ -91,7 +91,7 @@
             android:layout_below="@+id/depart_date_textView"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="12:30"
+            android:text=""
             android:textColor="@android:color/black"
             android:textSize="18sp"/>
 
@@ -103,7 +103,7 @@
             android:layout_below="@+id/arrive_date_textView"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            android:text="15:30"
+            android:text=""
             android:textColor="@android:color/black"
             android:textSize="18sp"/>
 
@@ -115,7 +115,7 @@
             android:layout_below="@+id/depart_time_textView"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="双流机场"
+            android:text=""
             android:textColor="@android:color/black" />
 
         <TextView
@@ -126,7 +126,7 @@
             android:layout_below="@+id/arrive_time_textView"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            android:text="墨尔本机场"
+            android:text=""
             android:textColor="@android:color/black" />
 
         <TextView
@@ -136,7 +136,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="16dp"
             android:layout_toLeftOf="@+id/arrow_imageView"
-            android:text="10月28日"
+            android:text=""
             android:textColor="@color/carbon_grey_600"/>
 
         <TextView
@@ -146,7 +146,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/arrow_imageView"
             android:layout_marginStart="16dp"
-            android:text="10月29日"
+            android:text=""
             android:textColor="@color/carbon_grey_600"/>
 
     </RelativeLayout>

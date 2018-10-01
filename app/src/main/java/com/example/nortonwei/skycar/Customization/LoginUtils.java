@@ -15,16 +15,20 @@ public class LoginUtils {
     private LoginUtils() {
     }
 
-    public static void logout(Context context, Activity activity) {
-        SharedPreferences share = context.getSharedPreferences("Login",
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = share.edit();
-        editor.putBoolean("isLogin", false);
-        editor.commit();
+    public static void logout(Context context) {
+        if (context != null) {
+            SharedPreferences share = context.getSharedPreferences("Login",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = share.edit();
+            editor.putBoolean("isLogin", false);
+            editor.putString("token", "");
+            editor.commit();
 
-        Intent intent = LaunchActivity.makeIntent(context);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        context.startActivity(intent);
-        activity.finish();
+            Intent intent = LaunchActivity.makeIntent(context);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            context.startActivity(intent);
+            Activity activity = (Activity) context;
+            activity.finish();
+        }
     }
 }

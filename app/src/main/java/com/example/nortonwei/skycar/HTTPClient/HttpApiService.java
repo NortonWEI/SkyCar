@@ -69,4 +69,8 @@ public interface HttpApiService {
     //user comment
     @GET("index/comment")
     Call<JsonObject> getUserComment(@Query("token") String token);
+
+    //inquire flight
+    @POST("/tool/flight")
+    Call<JsonObject> inquireFlight(@Header("token") String token, @Query("flightNo") String flightNo, @Query("date") String date);
 }

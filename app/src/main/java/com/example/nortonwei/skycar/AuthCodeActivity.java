@@ -111,7 +111,6 @@ public class AuthCodeActivity extends AppCompatActivity {
                                     Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = share.edit();
                             editor.putBoolean("isLogin", false);
-                            editor.putString("mobile", getIntent().getStringExtra("mobile"));
                             editor.putString("token", data.get("token").getAsString());
                             editor.commit();
 
@@ -175,7 +174,9 @@ public class AuthCodeActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.
                 INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        if (getCurrentFocus() != null) {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
         return true;
     }
 

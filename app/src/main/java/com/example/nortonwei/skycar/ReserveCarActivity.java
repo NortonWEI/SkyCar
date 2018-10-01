@@ -277,7 +277,9 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
             location.addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Location currentLocation = (Location) task.getResult();
-                    moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                    if (currentLocation != null) {
+                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                    }
                 } else {
                     Toast.makeText(ReserveCarActivity.this, "Unable to get your current location", Toast.LENGTH_SHORT).show();
                 }

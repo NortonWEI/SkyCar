@@ -197,7 +197,7 @@ public class HomeFragment extends Fragment {
                     ultraViewPager.setAutoScroll(2000);
 
                 } else if (status == HttpApiService.STATUS_LOGOUT) {
-                    LoginUtils.logout(getContext(), getActivity());
+                    LoginUtils.logout(getContext());
                 } else {
                     Toast.makeText(getContext(), "服务器繁忙，加载主页内容失败！", Toast.LENGTH_SHORT).show();
                 }
@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
                         linearLayout.addView(v);
                     }
                 } else if (status == HttpApiService.STATUS_LOGOUT) {
-                    LoginUtils.logout(getContext(), getActivity());
+                    LoginUtils.logout(getContext());
                 } else {
                     Toast.makeText(getContext(), "网络错误，加载主页内容失败！", Toast.LENGTH_SHORT).show();
                 }

@@ -85,7 +85,6 @@ public class WechatLoginTransitionActivity extends AppCompatActivity {
                                     Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = share.edit();
                             editor.putBoolean("isLogin", true);
-                            editor.putString("mobile", "");
                             editor.putString("token", data.get("token").toString());
                             editor.commit();
 

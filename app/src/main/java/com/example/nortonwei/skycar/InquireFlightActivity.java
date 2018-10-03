@@ -128,7 +128,7 @@ public class InquireFlightActivity extends AppCompatActivity {
 
         inquireButton.setOnClickListener(view -> {
             if (flightNumberEditText.getText().toString().isEmpty() || takeoffTimeEditText.getText().toString().isEmpty()) {
-                Toast.makeText(this, "请您填写航班号及起飞时间", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InquireFlightActivity.this, "请您填写航班号及起飞时间", Toast.LENGTH_SHORT).show();
             }
 //            else if (!flightNumberEditText.getText().toString().matches("^([^\\W_]{2}[a-z]?)?(\\d{4})[a-z]?$")) {
 //                Toast.makeText(this, "请您输入有效的航班号", Toast.LENGTH_SHORT).show();
@@ -145,8 +145,6 @@ public class InquireFlightActivity extends AppCompatActivity {
 
                 SharedPreferences share = getSharedPreferences("Login",
                         Context.MODE_PRIVATE);
-
-                Log.d("token", share.getString("token", ""));
 
                 Call<JsonObject> responseBodyCall = service.inquireFlight(share.getString("token", ""),
                         flightNumberEditText.getText().toString(),

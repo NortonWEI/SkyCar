@@ -31,6 +31,7 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.nortonwei.skycar.Adapter.CarTypeUltraPagerAdapter;
 import com.example.nortonwei.skycar.Customization.PaymentPopup;
+import com.example.nortonwei.skycar.Model.Car;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -43,6 +44,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
 import com.tmall.ultraviewpager.UltraViewPager;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -63,6 +65,8 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
     private View fillInfoView;
     private View continueReserveView;
     private RelativeLayout.LayoutParams params;
+
+    private ArrayList<Car> carList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +172,7 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
 
             UltraViewPager ultraViewPager = (UltraViewPager) continueReserveView.findViewById(R.id.car_type_ultraViewPager);
             ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-            PagerAdapter adapter = new CarTypeUltraPagerAdapter(true);
+            PagerAdapter adapter = new CarTypeUltraPagerAdapter(true, ReserveCarActivity.this, carList);
             ultraViewPager.setAdapter(adapter);
             ultraViewPager.setMultiScreen(0.5f);
             ultraViewPager.setItemRatio(1.0f);

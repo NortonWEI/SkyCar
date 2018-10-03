@@ -211,7 +211,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-
         setUpCountryList();
 
         Button nextButton = (Button) findViewById(R.id.next_auth_code_button);

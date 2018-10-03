@@ -153,9 +153,27 @@ public class HomeFragment extends Fragment {
     }
 
     private void setAdData(View fragmentView) {
+        UltraViewPager ultraViewPager = (UltraViewPager) fragmentView.findViewById(R.id.ad_ultraViewPager);
+        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+        PagerAdapter adapter = new HomeAdUltraPageAdapter(adImageUrlList, adClickUrlList, getContext());
+        ultraViewPager.setAdapter(adapter);
+        ultraViewPager.setAutoMeasureHeight(true);
+        ultraViewPager.initIndicator();
+        ultraViewPager.getIndicator()
+                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+                .setFocusColor(getResources().getColor(R.color.themeRed))
+                .setNormalColor(getResources().getColor(R.color.white))
+                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
+        ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+        ultraViewPager.getIndicator().build();
+
+        ultraViewPager.setInfiniteLoop(true);
+        ultraViewPager.setAutoScroll(2000);
+
         isAdFinishLoad = false;
         adImageUrlList.clear();
         adClickUrlList.clear();
+        ultraViewPager.refresh();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HttpApiService.BASE_URL)
@@ -178,23 +196,7 @@ public class HomeFragment extends Fragment {
                         adImageUrlList.add(ad.get("img").getAsString());
                         adClickUrlList.add(ad.get("url").getAsString());
                     }
-
-                    UltraViewPager ultraViewPager = (UltraViewPager) fragmentView.findViewById(R.id.ad_ultraViewPager);
-                    ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-                    PagerAdapter adapter = new HomeAdUltraPageAdapter(adImageUrlList, adClickUrlList, getContext());
-                    ultraViewPager.setAdapter(adapter);
-                    ultraViewPager.setAutoMeasureHeight(true);
-                    ultraViewPager.initIndicator();
-                    ultraViewPager.getIndicator()
-                            .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
-                            .setFocusColor(getResources().getColor(R.color.themeRed))
-                            .setNormalColor(getResources().getColor(R.color.white))
-                            .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
-                    ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-                    ultraViewPager.getIndicator().build();
-
-                    ultraViewPager.setInfiniteLoop(true);
-                    ultraViewPager.setAutoScroll(2000);
+                    ultraViewPager.refresh();
 
                 } else if (status == HttpApiService.STATUS_LOGOUT) {
                     LoginUtils.logout(getContext());

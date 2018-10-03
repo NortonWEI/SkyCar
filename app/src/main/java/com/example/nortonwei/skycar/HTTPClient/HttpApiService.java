@@ -70,6 +70,14 @@ public interface HttpApiService {
     @GET("index/comment")
     Call<JsonObject> getUserComment(@Query("token") String token);
 
+    //get airport list
+    @GET("/index/airport-list")
+    Call<JsonObject> getAirportList();
+
+    //check car type and price
+    @POST("/mission/check-price")
+    Call<JsonObject> checkCarType(@Header("token") String token, @Query("use_time") String useTime, @Query("address[]") String[] address, @Query("airport_id") String airportId);
+
     //inquire flight
     @POST("/tool/flight")
     Call<JsonObject> inquireFlight(@Header("token") String token, @Query("flightNo") String flightNo, @Query("date") String date);

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ConfirmTripActivity">
 
     <ScrollView
@@ -12,6 +11,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/content_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -20,9 +20,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp">
 
 
                 <android.support.constraint.ConstraintLayout
@@ -33,9 +33,9 @@
                         android:id="@+id/imageView26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -56,9 +56,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,51 +101,51 @@
                             app:srcCompat="@drawable/end" />
 
                         <TextView
-                            android:id="@+id/textView33"
+                            android:id="@+id/time_textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="TextView"
+                            android:text=""
                             app:layout_constraintBottom_toBottomOf="@+id/imageView27"
                             app:layout_constraintStart_toEndOf="@+id/imageView27"
                             app:layout_constraintTop_toTopOf="@+id/imageView27" />
 
                         <TextView
-                            android:id="@+id/textView34"
+                            android:id="@+id/depart_textView"
                             android:layout_width="wrap_content"
-                            android:layout_height="16dp"
-                            android:text="TextView"
+                            android:layout_height="wrap_content"
+                            android:text=""
                             app:layout_constraintBottom_toBottomOf="@+id/imageView28"
-                            app:layout_constraintStart_toStartOf="@+id/textView33"
+                            app:layout_constraintStart_toStartOf="@+id/time_textView"
                             app:layout_constraintTop_toTopOf="@+id/imageView28" />
 
                         <TextView
-                            android:id="@+id/textView35"
+                            android:id="@+id/arrive_textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text=""
                             app:layout_constraintBottom_toBottomOf="@+id/imageView29"
-                            app:layout_constraintStart_toStartOf="@+id/textView34"
+                            app:layout_constraintStart_toStartOf="@+id/depart_textView"
                             app:layout_constraintTop_toTopOf="@+id/imageView29" />
 
                         <TextView
-                            android:id="@+id/textView36"
+                            android:id="@+id/car_type_textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            android:text="TextView"
+                            android:layout_marginBottom="8dp"
+                            android:text=""
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/textView35"
-                            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                            app:layout_constraintStart_toStartOf="@+id/arrive_textView"
+                            app:layout_constraintTop_toBottomOf="@+id/arrive_textView" />
 
                         <ImageButton
-                            android:id="@+id/imageButton"
+                            android:id="@+id/switch_imageButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
                             android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
                             android:background="@android:color/transparent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -159,26 +159,26 @@
                         android:background="@color/carbon_grey_100">
 
                         <ImageView
-                            android:id="@+id/imageView30"
+                            android:id="@+id/cancel_hint_imageView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/noncancelable" />
 
                         <TextView
-                            android:id="@+id/textView37"
+                            android:id="@+id/cancel_textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageView30"
-                            app:layout_constraintStart_toEndOf="@+id/imageView30"
-                            app:layout_constraintTop_toTopOf="@+id/imageView30" />
+                            android:text=""
+                            app:layout_constraintBottom_toBottomOf="@+id/cancel_hint_imageView"
+                            app:layout_constraintStart_toEndOf="@+id/cancel_hint_imageView"
+                            app:layout_constraintTop_toTopOf="@+id/cancel_hint_imageView" />
                     </android.support.constraint.ConstraintLayout>
 
                 </LinearLayout>
@@ -188,9 +188,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -207,6 +207,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/people_number"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/people_number_editText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/people_number_editText" />
@@ -215,14 +216,15 @@
                             android:id="@+id/people_number_editText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:layout_marginStart="96dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
                             android:focusable="false"
                             android:hint="@string/choose_people_number"
                             android:inputType="textPersonName"
+                            android:theme="@style/EditTextTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -245,6 +247,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/luggage_number"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/luggage_number_editText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/luggage_number_editText" />
@@ -253,14 +256,15 @@
                             android:id="@+id/luggage_number_editText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:layout_marginStart="96dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
                             android:focusable="false"
                             android:hint="@string/choose_luggage_number"
                             android:inputType="textPersonName"
+                            android:theme="@style/EditTextTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -272,9 +276,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -291,6 +295,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/contact_person"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/editText5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/editText5" />
@@ -299,14 +304,15 @@
                             android:id="@+id/editText5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginStart="96dp"
+                            android:layout_marginStart="112dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
                             android:hint="@string/fill_contact_person"
                             android:inputType="textPersonName"
+                            android:theme="@style/EditTextTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/frequent_passenger_button"
                             app:layout_constraintStart_toStartOf="parent"
@@ -342,6 +348,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/mobile_number"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/editText3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/editText3" />
@@ -350,25 +357,26 @@
                             android:id="@+id/editText3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
                             android:hint="@string/fill_mobile_number"
                             android:inputType="phone"
+                            android:theme="@style/EditTextTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/spinner"
+                            app:layout_constraintStart_toEndOf="@+id/phone_country_code_spinner"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <Spinner
-                            android:id="@+id/spinner"
+                            android:id="@+id/phone_country_code_spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="96dp"
+                            android:layout_marginStart="112dp"
                             app:layout_constraintBottom_toBottomOf="@+id/editText3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/editText3" />
@@ -390,6 +398,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/standby_mobile_number"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/editText4"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/editText4" />
@@ -398,25 +407,26 @@
                             android:id="@+id/editText4"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
                             android:hint="@string/fill_mobile_number"
                             android:inputType="phone"
+                            android:theme="@style/EditTextTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/spinner2"
+                            app:layout_constraintStart_toEndOf="@+id/standby_phone_country_code_spinner"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <Spinner
-                            android:id="@+id/spinner2"
+                            android:id="@+id/standby_phone_country_code_spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="96dp"
+                            android:layout_marginStart="112dp"
                             app:layout_constraintBottom_toBottomOf="@+id/editText4"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/editText4" />
@@ -438,6 +448,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/flight_number"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/editText6"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/editText6" />
@@ -446,28 +457,21 @@
                             android:id="@+id/editText6"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="112dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
                             android:hint="@string/fill_flight_number"
                             android:inputType="textPersonName"
+                            android:theme="@style/EditTextTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/spinner3"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
-                        <Spinner
-                            android:id="@+id/spinner3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="96dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/editText6"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/editText6" />
                     </android.support.constraint.ConstraintLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -475,9 +479,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -494,6 +498,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/car_share"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/switch1"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/switch1" />
@@ -502,9 +507,9 @@
                             android:id="@+id/switch1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             android:text=""
                             android:theme="@style/SwitchTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -533,6 +538,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/placard_cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp">
@@ -558,6 +564,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/show_card_pickup"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/switch2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/switch2" />
@@ -566,9 +573,9 @@
                         android:id="@+id/switch2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
                         android:text=""
                         android:theme="@style/SwitchTheme"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -585,6 +592,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:buttonTint="@color/themeRed"
+                android:checked="true"
                 android:text="CheckBox" />
 
             <LinearLayout
@@ -600,21 +608,36 @@
                     android:layout_weight="1"
                     android:background="@drawable/drawable_red_theme_button"
                     android:text=""
+                    android:textSize="20sp"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/offline_pay_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/drawable_white_theme_button"
-                    android:text=""
-                    android:textColor="@color/themeRed" />
+                <!--<Button-->
+                <!--android:id="@+id/offline_pay_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/drawable_white_theme_button"-->
+                <!--android:text=""-->
+                <!--android:textColor="@color/themeRed" />-->
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="20dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:indeterminateTint="@color/themeRed" />
+
+    </RelativeLayout>
+</RelativeLayout>

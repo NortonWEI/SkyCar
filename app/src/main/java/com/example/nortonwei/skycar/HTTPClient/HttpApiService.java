@@ -43,7 +43,7 @@ public interface HttpApiService {
     Call<JsonObject> obtainWechatUserInfo(@Url String url);
 
     //get country list
-    @GET("/index/country")
+    @GET("/system/country")
     Call<JsonObject> getCountryList();
 
     //send verification code

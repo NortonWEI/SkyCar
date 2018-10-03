@@ -112,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }, 10, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        spannableString.setSpan(new ForegroundColorSpan(Color.RED), 10, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.themeRed)), 10, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         spannableString.setSpan(new ClickableSpan() {
             @Override
@@ -121,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }, 15, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        spannableString.setSpan(new ForegroundColorSpan(Color.RED), 15, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.themeRed)), 15, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannableString;
     }
 

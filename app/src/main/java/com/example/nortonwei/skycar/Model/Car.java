@@ -5,10 +5,10 @@ public class Car {
     String name;
     String desc;
     String imgUrl;
-    String basePrice;
-    String audPrice;
+    float basePrice;
+    float audPrice;
 
-    public Car(String id, String name, String desc, String imgUrl, String basePrice, String audPrice) {
+    public Car(String id, String name, String desc, String imgUrl, float basePrice, float audPrice) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -33,11 +33,11 @@ public class Car {
         return imgUrl;
     }
 
-    public String getBasePrice() {
+    public float getBasePrice() {
         return basePrice;
     }
 
-    public String getAudPrice() {
+    public float getAudPrice() {
         return audPrice;
     }
 }

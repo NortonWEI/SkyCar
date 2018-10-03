@@ -33,15 +33,12 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.nortonwei.skycar.Adapter.CarTypeUltraPagerAdapter;
 import com.example.nortonwei.skycar.Customization.LoginUtils;
-import com.example.nortonwei.skycar.Customization.ScreenUtils;
 import com.example.nortonwei.skycar.HTTPClient.HttpApiService;
 import com.example.nortonwei.skycar.Model.Car;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tmall.ultraviewpager.UltraViewPager;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,7 +52,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AirportPickupActivity extends AppCompatActivity {
-    int airportChoice = 0;
+    private int airportChoice = 0;
+    private int carTypeChoice = 0;
     private ProgressBar progressBar;
     private EditText chooseAirportEditText;
     private EditText arriveEditText;
@@ -70,6 +68,13 @@ public class AirportPickupActivity extends AppCompatActivity {
     private ArrayList<String> airportList = new ArrayList<>();
     private ArrayList<Car> carList = new ArrayList<>();
     private boolean isReserveButtonClicked = false;
+    private Calendar selectedDate = Calendar.getInstance();
+    private int serviceOption = 0; // 0: pickup, 1: dropoff
+    private int cancelValue = 0; //0: cannot cancel, 1: half-cancel, 2: free-cancel
+    private String cancelTime = "";
+    private float distance = 0.00f;
+    private float placardPrice = 0.00f;
+    private float childSeatPrice = 0.00f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +167,7 @@ public class AirportPickupActivity extends AppCompatActivity {
                     linearLayout.addView(useCarInfoView,1);
                 }
             }
+            serviceOption = 0;
         });
 
         dropOffButton.setOnClickListener(view -> {
@@ -186,6 +192,7 @@ public class AirportPickupActivity extends AppCompatActivity {
                     linearLayout.addView(useCarInfoView, 1);
                 }
             }
+            serviceOption = 1;
         });
 
 //        roundTripButton.setOnClickListener(view -> {
@@ -207,6 +214,7 @@ public class AirportPickupActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        actionId == EditorInfo.IME_ACTION_SEARCH ||
                         event != null &&
                                 event.getAction() == KeyEvent.ACTION_DOWN &&
                                 event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
@@ -232,6 +240,7 @@ public class AirportPickupActivity extends AppCompatActivity {
             TimePickerView selectedTime = new TimePickerBuilder(AirportPickupActivity.this, new OnTimeSelectListener() {
                 @Override
                 public void onTimeSelect(Date date, View v) {
+                    selectedDate.setTime(date);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     useCarTimeEditText.setText(dateFormat.format(date));
 
@@ -247,6 +256,7 @@ public class AirportPickupActivity extends AppCompatActivity {
                     .setCancelColor(getResources().getColor(R.color.themeRed))
                     .setSubmitColor(getResources().getColor(R.color.themeRed))
                     .setTitleText(getString(R.string.choose_use_car_time))
+                    .setDate(selectedDate)
                     .setRangDate(startDate, endDate)
                     .isCenterLabel(true)
                     .build();
@@ -285,6 +295,23 @@ public class AirportPickupActivity extends AppCompatActivity {
                     setUpCarList();
                 } else {
                     Intent intent = ConfirmTripActivity.makeIntent(AirportPickupActivity.this);
+                    intent.putExtra("time", useCarTimeEditText.getText().toString());
+                    intent.putExtra("distance", distance);
+                    intent.putExtra("basePrice", carList.get(carTypeChoice).getBasePrice());
+                    intent.putExtra("placardPrice", placardPrice);
+                    intent.putExtra("childSeatPrice", childSeatPrice);
+                    intent.putExtra("serviceOption", serviceOption);
+                    if (serviceOption == 0) {
+                        intent.putExtra("depart", chooseAirportEditText.getText().toString());
+                        intent.putExtra("arrive", arriveEditText.getText().toString());
+                    } else if (serviceOption == 1) {
+                        intent.putExtra("depart", arriveEditText.getText().toString());
+                        intent.putExtra("arrive", chooseAirportEditText.getText().toString());
+                    }
+                    intent.putExtra("carName", carList.get(carTypeChoice).getName());
+                    intent.putExtra("carDesc", carList.get(carTypeChoice).getDesc());
+                    intent.putExtra("cancelValue", cancelValue);
+                    intent.putExtra("cancelTime", cancelTime);
                     startActivity(intent);
                     overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                 }
@@ -391,11 +418,23 @@ public class AirportPickupActivity extends AppCompatActivity {
                 int status = response.body().get("status").getAsInt();
                 String msg = response.body().get("msg").getAsString();
 
-                Log.d("status", "" + status);
-                Log.d("msg", msg);
-
                 if (status == HttpApiService.STATUS_OK) {
                     JsonObject data = response.body().get("data").getAsJsonObject();
+                    distance = data.get("distance").getAsFloat();
+                    placardPrice = data.get("placards_price").getAsFloat();
+                    childSeatPrice = data.get("children_price").getAsFloat();
+                    int freeCancel = data.get("free_cancel").getAsInt();
+                    int halfCancel = data.get("half_cancel").getAsInt();
+
+                    if (freeCancel == 1) {
+                        cancelValue = 2;
+                    } else if (halfCancel == 1) {
+                        cancelValue = 1;
+                    } else {
+                        cancelValue = 0;
+                    }
+                    cancelTime = data.get("cancel_time").getAsString();
+
                     JsonArray carArray = data.get("carList").getAsJsonArray();
 
                     for (JsonElement element: carArray) {
@@ -404,8 +443,8 @@ public class AirportPickupActivity extends AppCompatActivity {
                         String name = car.get("name").getAsString();
                         String desc = car.get("descript").getAsString();
                         String imgUrl = car.get("img").getAsString();
-                        String price = car.get("price").getAsString();
-                        String audPrice = car.get("aud_price").getAsString();
+                        float price = car.get("price").getAsFloat();
+                        float audPrice = car.get("aud_price").getAsFloat();
 
                         carList.add(new Car(id, name, desc, imgUrl, price, audPrice));
                     }
@@ -433,6 +472,7 @@ public class AirportPickupActivity extends AppCompatActivity {
                             carTypeTextView.setText(carList.get(i).getName());
                             rmbPriceTextView.setText(getString(R.string.base_price) + carList.get(i).getBasePrice());
                             audPriceTextView.setText("AUD" + carList.get(i).getAudPrice());
+                            carTypeChoice = i;
                         }
 
                         @Override

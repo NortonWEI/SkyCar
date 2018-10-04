@@ -254,36 +254,40 @@ public class LicenseTranslationActivity extends AppCompatActivity {
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
             return true;
         } else {
-            Toast.makeText(this, "You device does not support camera", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "您的设备不支持相机及照片功能", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == TAKE_PERMISSIONS_REQUESTS_CODE)
-        {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == TAKE_PERMISSIONS_REQUESTS_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
                 isTakePermitted = true;
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, BACK_TAKE_REQUEST_CODE);
             } else {
                 isTakePermitted = false;
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "没有权限", Toast.LENGTH_SHORT).show();
             }
         }
 
 
-        if (requestCode == PICK_PERMISSIONS_REQUESTS_CODE)
-        {
+        if (requestCode == PICK_PERMISSIONS_REQUESTS_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
                 isPickPermitted = true;
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, FRONT_PICK_REQUEST_CODE);
             } else {
                 isPickPermitted = false;
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "没有权限", Toast.LENGTH_SHORT).show();
             }
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public static Intent makeIntent(Context context) {

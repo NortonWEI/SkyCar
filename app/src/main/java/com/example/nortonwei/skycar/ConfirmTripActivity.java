@@ -15,12 +15,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +57,7 @@ public class ConfirmTripActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ArrayList<String> countryList = new ArrayList<>();
     private ArrayList<String> countryCodeList = new ArrayList<>();
+    private float currentPrice = 0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +104,9 @@ public class ConfirmTripActivity extends AppCompatActivity {
 //        SpannableString offlinePayButtonText = new SpannableString("$12" + "\n" + getString(R.string.offline_pay_hint));
 //        offlinePayButtonText.setSpan(new RelativeSizeSpan(0.8f), 4, offlinePayButtonText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        offlinePayButton.setText(offlinePayButtonText);
+        Switch shareCarSwitch = (Switch) findViewById(R.id.car_share_switch);
+        Switch placardSwitch = (Switch) findViewById(R.id.placard_switch);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.hint_checkBox);
 
         TextView timeTextView = (TextView) findViewById(R.id.time_textView);
         TextView departTextView = (TextView) findViewById(R.id.depart_textView);
@@ -111,7 +118,14 @@ public class ConfirmTripActivity extends AppCompatActivity {
 
         EditText peopleNumberEditText = (EditText) findViewById(R.id.people_number_editText);
         EditText luggageNumberEditText = (EditText) findViewById(R.id.luggage_number_editText);
+
+        EditText contactEditText = (EditText) findViewById(R.id.contact_person_editText);
+        EditText phoneEditText = (EditText) findViewById(R.id.phone_number_editText);
+        EditText standbyPhoneEditText = (EditText) findViewById(R.id.standby_phone_number_editText);
+        EditText flightNumberEditText = (EditText) findViewById(R.id.flight_number_editText);
+
         CardView placardCardView = (CardView) findViewById(R.id.placard_cardView);
+        TextView placardPriceTextView = (TextView) findViewById(R.id.placard_price_textView);
 
         if (getIntent().hasExtra("time") &&
                 getIntent().hasExtra("distance") &&
@@ -162,8 +176,33 @@ public class ConfirmTripActivity extends AppCompatActivity {
                 default:
                     break;
             }
-            onlinePayButton.setText("¥" + getIntent().getFloatExtra("basePrice", 0));
+            currentPrice = getIntent().getFloatExtra("basePrice", 0);
+            onlinePayButton.setText("¥" + currentPrice);
         }
+
+        if (getIntent().hasExtra("placardPrice")) {
+            placardPriceTextView.setText("¥" + getIntent().getFloatExtra("placardPrice",0) + "/次");
+        }
+
+        placardSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (getIntent().hasExtra("placardPrice")) {
+                    if (isChecked) {
+                        currentPrice += getIntent().getFloatExtra("placardPrice",0);
+                    } else {
+                        currentPrice -= getIntent().getFloatExtra("placardPrice",0);
+                    }
+                    onlinePayButton.setText("¥" + currentPrice);
+                }
+            }
+        });
+
+        String checkBoxContent = "下单代表您同意接送机用户使用协议和隐私协议";
+        SpannableString checkBoxString = new SpannableString(checkBoxContent);
+        checkBoxString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.themeRed)), checkBoxContent.length()-11, checkBoxContent.length()-5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        checkBoxString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.themeRed)), checkBoxContent.length()-4, checkBoxContent.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        checkBox.setText(checkBoxString);
 
         switchImageButton.setOnClickListener(view -> {
             String tempString = arrive;
@@ -175,9 +214,17 @@ public class ConfirmTripActivity extends AppCompatActivity {
             if (serviceOption == 0) {
                 serviceOption = 1;
                 layout.removeView(placardCardView);
+
+                if (placardSwitch.isChecked()) {
+                    currentPrice -= getIntent().getFloatExtra("placardPrice",0);
+                }
             } else if (serviceOption == 1) {
                 serviceOption = 0;
                 layout.addView(placardCardView, layout.getChildCount()-2);
+
+                if (placardSwitch.isChecked()) {
+                    currentPrice += getIntent().getFloatExtra("placardPrice",0);
+                }
             }
         });
 
@@ -214,9 +261,8 @@ public class ConfirmTripActivity extends AppCompatActivity {
                             peopleNumberEditText.setText("成人" + adultNum + "，儿童" + (sevenPlusChildNum+sevenMinusChildNum));
 
                             if (getIntent().hasExtra("childSeatPrice")) {
-                                float newPrice = getIntent().getFloatExtra("basePrice", 0) +
-                                        (getIntent().getFloatExtra("childSeatPrice", 0) * (sevenPlusChildNum+sevenMinusChildNum));
-                                onlinePayButton.setText("¥" + newPrice);
+                                currentPrice += (getIntent().getFloatExtra("childSeatPrice", 0) * (sevenPlusChildNum+sevenMinusChildNum));
+                                onlinePayButton.setText("¥" + currentPrice);
                             }
 
                             bottomDialog.dismiss();
@@ -285,9 +331,19 @@ public class ConfirmTripActivity extends AppCompatActivity {
         });
 
         onlinePayButton.setOnClickListener(view -> {
-            PaymentPopup popup = new PaymentPopup(this);
-            popup.setUp();
-            popup.show();
+            if (peopleNumberEditText.getText().toString().isEmpty() ||
+                    luggageNumberEditText.getText().toString().isEmpty() ||
+                    contactEditText.getText().toString().isEmpty() ||
+                    phoneEditText.getText().toString().isEmpty() ||
+                    flightNumberEditText.getText().toString().isEmpty()) {
+                Toast.makeText(ConfirmTripActivity.this, "请填写您的行程信息", Toast.LENGTH_SHORT).show();
+            } else if (adultNum == 0) {
+                Toast.makeText(ConfirmTripActivity.this, "乘车成人数需至少为1", Toast.LENGTH_SHORT).show();
+            } else {
+                PaymentPopup popup = new PaymentPopup(this);
+                popup.setUp();
+                popup.show();
+            }
         });
 
 //        offlinePayButton.setOnClickListener(view -> {

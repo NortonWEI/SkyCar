@@ -78,6 +78,10 @@ public interface HttpApiService {
     @POST("/mission/check-price")
     Call<JsonObject> checkCarType(@Header("token") String token, @Query("use_time") String useTime, @Query("address[]") String[] address, @Query("airport_id") String airportId);
 
+    //add frequent contacts
+    @POST("/contacts/add")
+    Call<JsonObject> addContact(@Header("token") String token, @Query("name") String name, @Query("mobile") String mobile);
+
     //inquire flight
     @POST("/tool/flight")
     Call<JsonObject> inquireFlight(@Header("token") String token, @Query("flightNo") String flightNo, @Query("date") String date);

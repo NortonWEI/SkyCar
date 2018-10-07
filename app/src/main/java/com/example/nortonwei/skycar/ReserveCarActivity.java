@@ -192,7 +192,7 @@ public class ReserveCarActivity extends AppCompatActivity implements OnMapReadyC
         offlinePayButton.setText(offlinePayButtonText);
 
         onlinePayButton.setOnClickListener(view -> {
-            PaymentPopup popup = new PaymentPopup(this);
+            PaymentPopup popup = new PaymentPopup(this, 198.0f);
             popup.setUp();
             popup.show();
         });

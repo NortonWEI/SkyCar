@@ -17,8 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -110,8 +112,6 @@ public class AddFrequentPassengerActivity extends AppCompatActivity {
                 SharedPreferences share = getSharedPreferences("Login",
                         Context.MODE_PRIVATE);
 
-                Log.d("token", share.getString("token", ""));
-
                 Call<JsonObject> responseBodyCall = service.addContact(share.getString("token", ""),
                         nameEditText.getText().toString(),
                         phoneCodeSpinner.getSelectedItem().toString() + " " + phoneNumberEditText.getText().toString());
@@ -122,6 +122,7 @@ public class AddFrequentPassengerActivity extends AppCompatActivity {
                         String msg = response.body().get("msg").getAsString();
 
                         if (status == HttpApiService.STATUS_OK) {
+                            setResult(RESULT_OK);
                             finish();
                         } else if (status == HttpApiService.STATUS_LOGOUT) {
                             LoginUtils.logout(AddFrequentPassengerActivity.this);
@@ -254,6 +255,16 @@ public class AddFrequentPassengerActivity extends AppCompatActivity {
                 Toast.makeText(this, "没有权限", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        if (getCurrentFocus() != null) {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return true;
     }
 
     public static Intent makeIntent(Context context) {

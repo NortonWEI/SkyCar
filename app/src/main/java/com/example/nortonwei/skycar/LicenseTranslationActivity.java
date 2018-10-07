@@ -80,7 +80,7 @@ public class LicenseTranslationActivity extends AppCompatActivity {
         uploadBackButton = (ImageButton) findViewById(R.id.upload_back_button);
 
         payButton.setOnClickListener(view -> {
-            PaymentPopup popup = new PaymentPopup(this);
+            PaymentPopup popup = new PaymentPopup(this, 198.0f);
             popup.setUp();
             popup.show();
         });

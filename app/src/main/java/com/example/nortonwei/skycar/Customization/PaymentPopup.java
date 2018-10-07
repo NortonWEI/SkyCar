@@ -9,19 +9,24 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.example.nortonwei.skycar.OnlinePaymentSuccessActivity;
 import com.example.nortonwei.skycar.R;
 
+import org.w3c.dom.Text;
+
 import me.shaohui.bottomdialog.BottomDialog;
 
 public class PaymentPopup {
     Context context;
+    float price;
     BottomDialog bottomDialog;
 
-    public PaymentPopup(Context context) {
+    public PaymentPopup(Context context, float price) {
         this.context = context;
+        this.price = price;
     }
 
     public void setUp() {
@@ -32,6 +37,7 @@ public class PaymentPopup {
         bottomDialog.setViewListener(new BottomDialog.ViewListener() {
             @Override
             public void bindView(View v) {
+                TextView priceTextView = (TextView) v.findViewById(R.id.price_textView);
                 Button confirmButton = (Button) v.findViewById(R.id.online_payment_confirm_button);
                 ImageButton closeButton = (ImageButton) v.findViewById(R.id.online_payment_close_imageButton);
 
@@ -42,6 +48,8 @@ public class PaymentPopup {
                 ImageView skycarImageView = (ImageView) v.findViewById(R.id.skycar_imageView);
                 ImageView wechatPayImageView = (ImageView) v.findViewById(R.id.wechat_pay_imageView);
                 ImageView alipayImageView = (ImageView) v.findViewById(R.id.alipay_imageView);
+
+                priceTextView.setText("¥" + price);
 
                 confirmButton.setOnClickListener(new View.OnClickListener() {
                     @Override

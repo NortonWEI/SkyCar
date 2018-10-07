@@ -78,9 +78,13 @@ public interface HttpApiService {
     @POST("/mission/check-price")
     Call<JsonObject> checkCarType(@Header("token") String token, @Query("use_time") String useTime, @Query("address[]") String[] address, @Query("airport_id") String airportId);
 
-    //add frequent contacts
+    //add frequent contact
     @POST("/contacts/add")
     Call<JsonObject> addContact(@Header("token") String token, @Query("name") String name, @Query("mobile") String mobile);
+
+    //get frequent contacts
+    @GET("contacts/lists")
+    Call<JsonObject> getContact(@Header("token") String token);
 
     //inquire flight
     @POST("/tool/flight")

@@ -48,7 +48,7 @@ public class ConfirmCompanionBusActivity extends AppCompatActivity {
     private void setUIComponent() {
         Button payButton = (Button) findViewById(R.id.pay_button);
         payButton.setOnClickListener(view -> {
-            PaymentPopup popup = new PaymentPopup(this);
+            PaymentPopup popup = new PaymentPopup(this, 198.0f);
             popup.setUp();
             popup.show();
         });
